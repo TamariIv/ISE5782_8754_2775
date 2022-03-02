@@ -3,12 +3,14 @@ package primitives;
 public class Vector extends Point{
 
     public Vector(double x, double y, double z) {
-        this(new Double3(x, y, z));
+        super(x, y, z);
+        if(getXyz().equals(Double3.ZERO))
+            throw new IllegalArgumentException("Vector (0,0,0) is not allowed");
     }
 
     public Vector(Double3 xyz){
         super(xyz);
-        if (_xyz.equals(Double3.ZERO)){
+        if (_xyz.equals(Double3.ZERO)) {
             throw new IllegalArgumentException("Vector (0,0,0) is not allowed");
         }
     }
@@ -29,7 +31,6 @@ public class Vector extends Point{
                 (this._xyz._d3 * other._xyz._d3);
     }
 
-
     public Vector crossProduct(Vector other) {
         double ax = _xyz._d1;
         double ay = _xyz._d2;
@@ -46,5 +47,13 @@ public class Vector extends Point{
     public Vector normalize() {
         double length = length();
         return new Vector(_xyz.reduce(length));
+    }
+
+    public Vector add(Vector v) {
+        return new Vector(this._xyz.add(v._xyz));
+    }
+
+    public Vector scale(double d) {
+        return new Vector(this._xyz.scale(d));
     }
 }
