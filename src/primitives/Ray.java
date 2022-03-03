@@ -6,14 +6,27 @@ public class Ray {
     final Point p0;
     final Vector dir;
 
+    /**
+     * get the point of the ray
+     * @return point
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * get the direction of the ray
+     * @return direction vector
+     */
     public Vector getDir() {
         return dir;
     }
 
+    /**
+     * Ray ctor
+     * @param p0 object of type Point
+     * @param dir direction - object of type Vector
+     */
     public Ray(Point p0, Vector dir) {
         if(!(dir.length() == 1))
             this.dir = dir.normalize();

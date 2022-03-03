@@ -51,13 +51,28 @@ public class Point {
                 (this._xyz._d3 - other._xyz._d2) * (this._xyz._d3 - other._xyz._d2);
     }
 
+    /**
+     * calculate the distance between two points
+     * @param other
+     * @return the calculated distance
+     */
     public double distance(Point other) {
         return Math.sqrt(distanceSquared(other));
     }
 
+    /**
+     * adds a vector to the point
+     * @param vector object of type Vector
+     * @return a new point
+     */
     public Point add(Vector vector) {
         return new Point(_xyz.add(vector._xyz));
     }
 
+    /**
+     * receives a Point as a parameter, returns a vector from second point to the point which called the method
+     * @param point object of type Point
+     * @return vector between 2 points
+     */
     public Vector subtract(Point point) { return new Vector(_xyz.subtract(point._xyz)); }
 }
