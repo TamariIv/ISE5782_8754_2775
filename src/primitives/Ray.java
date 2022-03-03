@@ -48,6 +48,10 @@ public class Ray {
         return Objects.hash(p0, dir);
     }
 
+    /**
+     * override toString
+     * @return string representing the ray
+     */
     @Override
     public String toString() {
         return "Ray{" +

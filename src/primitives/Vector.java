@@ -28,7 +28,7 @@ public class Vector extends Point{
 
     /**
      * the squared value of the vector’s length
-     * @return the result
+     * @return the squared length
      */
     public double lengthSquared() {
         return (_xyz._d1 * _xyz._d1)  +
@@ -83,7 +83,7 @@ public class Vector extends Point{
 
     /**
      * add two vectors
-     * @param v
+     * @param v vector to add
      * @return the new vector
      */
     public Vector add(Vector v) {
@@ -92,7 +92,7 @@ public class Vector extends Point{
 
     /**
      * multiplication vector in scalar
-     * @param d
+     * @param d scale
      * @return the new vector
      */
     public Vector scale(double d) {

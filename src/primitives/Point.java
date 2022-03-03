@@ -22,6 +22,10 @@ public class Point {
         _xyz = new Double3(x,y,z);
     }
 
+    /**
+     * xyz getter
+     * @return the xyz double3
+     */
     public Double3 getXyz() {
         return _xyz;
     }
@@ -40,11 +44,20 @@ public class Point {
         return Objects.hash(_xyz);
     }
 
+    /**
+     * override toString
+     * @return string representing the point
+     */
     @Override
     public String toString() {
         return "Point" +_xyz;
     }
 
+    /**
+     * calculate the square of the distance
+     * @param other point to calculate the distance to
+     * @return the distance
+     */
     public double distanceSquared(Point other) {
         return (this._xyz._d1 - other._xyz._d1) * (this._xyz._d1 - other._xyz._d1) +
                 (this._xyz._d2 - other._xyz._d2) * (this._xyz._d2 - other._xyz._d2) +
