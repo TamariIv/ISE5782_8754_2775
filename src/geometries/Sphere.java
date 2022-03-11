@@ -52,6 +52,7 @@ public class Sphere implements Geometry {
      */
     @Override
     public Vector getNormal(Point p) {
-        return null;
+        Vector N = p.subtract(p0);
+        return N.normalize();
     }
 }
