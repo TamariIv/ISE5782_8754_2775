@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class RayTest {
 
     @Test
-    void testGetP0() {
+    void getP0() {
     }
 
     @Test
-    void testGetDir() {
+    void getDir() {
     }
 }

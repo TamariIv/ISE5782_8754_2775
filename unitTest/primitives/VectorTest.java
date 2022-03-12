@@ -95,11 +95,11 @@ class VectorTest {
 
     @Test
     void testAdd() {
-
+        assertEquals(v1.add(v2), new Vector(-1, -2, -3), "ERROR: add() wrong value");
     }
 
     @Test
     void testScale() {
-
+        assertEquals(v1.scale(3), new Vector(3, 6, 9), "ERROR: scale() wrong value");
     }
 }
