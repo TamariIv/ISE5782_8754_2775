@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package geometries;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,8 +15,7 @@ import primitives.*;
  * @author Dan
  *
  */
-public class PolygonTests {
-
+public class PolygonTest {
 
     /**
      * Test method for {@link geometries.Polygon#Polygon(primitives.Point...)}.
