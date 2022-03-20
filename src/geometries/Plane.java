@@ -14,7 +14,7 @@ public class Plane implements Geometry{
      */
     public Plane(Point p0, Vector normal) {
         _p0 = p0;
-        _normal = normal;
+        _normal = normal.normalize();
     }
 
     /**

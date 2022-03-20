@@ -79,16 +79,17 @@ class VectorTest {
 
     @Test
     void testNormalize() {
-//        Vector v = new Vector(1, 2, 3);
-//        Vector u = v.normalize();
-//        assertTrue (!isZero(u.length() - 1),"the normalized vector is not a unit vector");
-//
-//        v.crossProduct(u);
+
+        // =============== Boundary Values Tests ==================
+        Vector u = v1.normalize();
+        assertTrue (isZero(u.length() - 1),"the normalized vector is not a unit vector");
+
+//        v1.crossProduct(u);
 //        assertThrows(IllegalArgumentException.class, ()-> v1.crossProduct())
 //            out.println("ERROR: the normalized vector is not parallel to the original one");
 //
 //
-//        if (v.dotProduct(u) < 0)
+//        if (v1.dotProduct(u) < 0)
 //            out.println("ERROR: the normalized vector is opposite to the original one");
 
     }
