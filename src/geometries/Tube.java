@@ -3,6 +3,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 public class Tube implements Geometry {
     Ray axis;
     double radius;
@@ -52,6 +54,11 @@ public class Tube implements Geometry {
      */
     @Override
     public Vector getNormal(Point p) {
+        return null;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray r) {
         return null;
     }
 }
