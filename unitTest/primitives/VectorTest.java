@@ -56,10 +56,8 @@ class VectorTest {
     @Test
     void testCrossProduct() {
 
-        Vector v1 = new Vector(1, 2, 3);
 
             // ============ Equivalence Partitions Tests ==============
-            Vector v2 = new Vector(0, 3, -2);
             Vector vr = v1.crossProduct(v2);
 
             // TC01: Test that length of cross-product is proper (orthogonal vectors taken
@@ -81,16 +79,15 @@ class VectorTest {
     void testNormalize() {
 
         // =============== Boundary Values Tests ==================
-        Vector u = v1.normalize();
-        assertTrue (isZero(u.length() - 1),"the normalized vector is not a unit vector");
 
-//        v1.crossProduct(u);
-//        assertThrows(IllegalArgumentException.class, ()-> v1.crossProduct())
-//            out.println("ERROR: the normalized vector is not parallel to the original one");
-//
-//
-//        if (v1.dotProduct(u) < 0)
-//            out.println("ERROR: the normalized vector is opposite to the original one");
+        Vector u = v1.normalize();
+        assertTrue (isZero(u.length() - 1),"ERROR: the normalized vector is not a unit vector");
+        try { // test that the vectors are co-lined
+            v1.crossProduct(u);
+            fail("ERROR: the normalized vector is not parallel to the original one");
+        } catch (Exception e) {
+        }
+        assertTrue (!(v1.dotProduct(u) < 0),"ERROR: the normalized vector is opposite to the original one" );
 
     }
 

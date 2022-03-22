@@ -1,7 +1,5 @@
 package geometries;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -54,7 +52,11 @@ public class Tube implements Geometry {
      */
     @Override
     public Vector getNormal(Point p) {
-        return null;
+        Vector v = p.subtract(axis.getP0());
+        double t = Util.alignZero(axis.getDir().dotProduct(v));
+        Point o = axis.getP0().add(axis.getDir().scale(t));
+        Vector N = p.subtract(o);
+        return N.normalize();
     }
 
     @Override
