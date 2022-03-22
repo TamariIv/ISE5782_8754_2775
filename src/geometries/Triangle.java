@@ -49,4 +49,5 @@ public class Triangle extends Polygon {
 
         return super.findIntersections(r);
     }
+
 }
