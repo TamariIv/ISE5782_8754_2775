@@ -8,6 +8,8 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
+import java.util.List;
+
 public class Sphere implements Geometry {
     Point p0;
     double radius;
@@ -103,6 +105,11 @@ public class Sphere implements Geometry {
             Point P2 = r.getPoint(t2);
             return List.of(P2);
         }
+        return null;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray r) {
         return null;
     }
 }

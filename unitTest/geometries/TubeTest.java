@@ -27,5 +27,9 @@ class TubeTest {
         assertTrue(firstnormal || secondtnormal, "Bad normal to tube");
 
         assertEquals(new Vector(0, 0, 1), normal, "Bad normal to tube");
+
+
+        Vector p_p0 = new Point(1,0,1).subtract(tube.getAxis().getP0());
+        assertTrue(Util.isZero(tube.getAxis().getDir().dotProduct(p_p0)));
     }
 }

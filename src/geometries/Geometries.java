@@ -23,7 +23,7 @@ public class Geometries implements Intersectable {
     }
 
     public void add(Intersectable... intersectables) {
-        Collections.addAll(_intersectablesList, intersectables)
+        Collections.addAll(_intersectablesList, intersectables);
     }
 
 //    public void remove(Intersectable... intersectables) {

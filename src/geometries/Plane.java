@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
@@ -15,7 +16,6 @@ public class Plane implements Geometry {
 
     /**
      * plane constructor
-     *
      * @param p0     parameter for p0
      * @param normal parameter for normal
      */
@@ -26,7 +26,6 @@ public class Plane implements Geometry {
 
     /**
      * plane constructor
-     *
      * @param p1 point 1 to calculate plane
      * @param p2 point 2 to calculate plane
      * @param p3 point 3 to calculate plane
@@ -41,7 +40,6 @@ public class Plane implements Geometry {
 
     /**
      * getter for p0
-     *
      * @return p0
      */
     public Point getP0() {
@@ -50,7 +48,6 @@ public class Plane implements Geometry {
 
     /**
      * getter for the normal
-     *
      * @return the normal
      */
     public Vector getNormal() {
@@ -59,7 +56,6 @@ public class Plane implements Geometry {
 
     /**
      * implement interface Geometry function
-     *
      * @param p the point from which we want the normal
      * @return the perpendicular vector to the point that was received
      */
@@ -89,5 +85,6 @@ public class Plane implements Geometry {
             return List.of(p);
         }
 
+        return null;
     }
 }

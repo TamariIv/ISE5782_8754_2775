@@ -7,6 +7,7 @@ public class Point {
 
     /**
      * primary constructor for point
+     *
      * @param xyz double3 value for _xyz
      */
     public Point(Double3 xyz) {
@@ -19,7 +20,7 @@ public class Point {
      * @param z coordinate z axis
      */
     public Point(double x, double y, double z) {
-        _xyz = new Double3(x,y,z);
+        _xyz = new Double3(x, y, z);
     }
 
     public double getX(){
@@ -33,18 +34,32 @@ public class Point {
     }
     /**
      * xyz getter
+     *
      * @return the xyz double3
      */
     public Double3 getXyz() {
         return _xyz;
     }
 
+    public double getX() {
+        return _xyz._d1;
+    }
+
+    public double getY() {
+        return _xyz._d2;
+    }
+
+    public double getZ() {
+        return _xyz._d3;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
         if (!(o instanceof Point)) return false;
-        Point other = (Point)o;
+        Point other = (Point) o;
         return this._xyz.equals(other._xyz);
     }
 
@@ -55,15 +70,17 @@ public class Point {
 
     /**
      * override toString
+     *
      * @return string representing the point
      */
     @Override
     public String toString() {
-        return "Point" +_xyz;
+        return "Point" + _xyz;
     }
 
     /**
      * calculate the square of the distance
+     *
      * @param other point to calculate the distance to
      * @return the distance
      */
@@ -75,6 +92,7 @@ public class Point {
 
     /**
      * calculate the distance between two points
+     *
      * @param other
      * @return the calculated distance
      */
@@ -84,6 +102,7 @@ public class Point {
 
     /**
      * adds a vector to the point
+     *
      * @param vector object of type Vector
      * @return a new point
      */
@@ -93,8 +112,11 @@ public class Point {
 
     /**
      * receives a Point as a parameter, returns a vector from second point to the point which called the method
+     *
      * @param point object of type Point
      * @return vector between 2 points
      */
-    public Vector subtract(Point point) { return new Vector(_xyz.subtract(point._xyz)); }
+    public Vector subtract(Point point) {
+        return new Vector(_xyz.subtract(point._xyz));
+    }
 }

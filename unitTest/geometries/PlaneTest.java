@@ -33,7 +33,6 @@ class PlaneTest {
         // ============ Equivalence Partitions Tests ==============
         double sqrt3 = Math.sqrt(1d/3);
         assertEquals(new Vector(sqrt3,sqrt3,sqrt3),_plane.getNormal(new Point(0,0,1)),"Incorrect normal to plane");
-
     }
 
 
