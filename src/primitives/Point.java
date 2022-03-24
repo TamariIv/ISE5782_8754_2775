@@ -23,15 +23,6 @@ public class Point {
         _xyz = new Double3(x, y, z);
     }
 
-    public double getX(){
-        return  _xyz._d1;
-    }
-    public double getY(){
-        return  _xyz._d2;
-    }
-    public double getZ(){
-        return  _xyz._d3;
-    }
     /**
      * xyz getter
      *

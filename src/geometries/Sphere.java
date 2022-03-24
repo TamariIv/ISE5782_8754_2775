@@ -16,7 +16,8 @@ public class Sphere implements Geometry {
 
     /**
      * sphere constructor
-     * @param p0 center point parameter
+     *
+     * @param p0     center point parameter
      * @param radius radius if the sphere
      */
     public Sphere(Point p0, double radius) {
@@ -26,6 +27,7 @@ public class Sphere implements Geometry {
 
     /**
      * getter for p0
+     *
      * @return p0
      */
     public Point getP0() {
@@ -34,6 +36,7 @@ public class Sphere implements Geometry {
 
     /**
      * getter for radius
+     *
      * @return the radius
      */
     public double getRadius() {
@@ -42,6 +45,7 @@ public class Sphere implements Geometry {
 
     /**
      * override toString
+     *
      * @return string representing the sphere
      */
     @Override
@@ -54,6 +58,7 @@ public class Sphere implements Geometry {
 
     /**
      * implement interface Geometry function
+     *
      * @param p the point from which we want the normal
      * @return the perpendicular vector to the point that was received
      */
@@ -64,19 +69,19 @@ public class Sphere implements Geometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray r) {
+    public List<Point> findIntersections(Ray ray) {
 
-        Point P0 = r.getP0();
-        Vector v = r.getDir();
+
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
 
         if (P0.equals(p0)) {
             return List.of(p0.add(v.scale(radius)));
         }
 
-        Vector U = p0.subtract(P0);
-
-        double tm = alignZero(v.dotProduct(U));
-        double d = alignZero(Math.sqrt(U.lengthSquared() - tm * tm));
+        Vector u = p0.subtract(P0);
+        double tm = alignZero(v.dotProduct(u));
+        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
 
         // no intersections : the ray direction is above the sphere
         if (d >= radius) {
@@ -87,29 +92,22 @@ public class Sphere implements Geometry {
         double t1 = alignZero(tm - th);
         double t2 = alignZero(tm + th);
 
-////////////לבדוק מכאן/////////////////////////////
         if (t1 > 0 && t2 > 0) {
-//            Point3D P1 = P0.add(v.scale(t1));
-//            Point3D P2 = P0.add(v.scale(t2));
-            Point P1 =r.getPoint(t1);
-            Point P2 =r.getPoint(t2);
+            Point P1 = P0.add(v.scale(t1));
+            Point P2 = P0.add(v.scale(t2));
             return List.of(P1, P2);
         }
+
         if (t1 > 0) {
-//            Point3D P1 = P0.add(v.scale(t1));
-            Point P1 = r.getPoint(t1);
+            Point P1 = P0.add(v.scale(t1));
             return List.of(P1);
         }
-        if (t2 > 0) {
-//            Point3D P2 = P0.add(v.scale(t2));
-            Point P2 = r.getPoint(t2);
-            return List.of(P2);
-        }
-        return null;
-    }
 
-    @Override
-    public List<Point> findIntersections(Ray r) {
+        if (t2 > 0) {
+           Point P2 = P0.add(v.scale(t2));
+           return List.of(P2);
+        }
+
         return null;
     }
 }

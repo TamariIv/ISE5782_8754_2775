@@ -3,6 +3,9 @@ import primitives.*;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 public class Tube implements Geometry {
     Ray axis;
     double radius;
@@ -53,14 +56,15 @@ public class Tube implements Geometry {
     @Override
     public Vector getNormal(Point p) {
         Vector v = p.subtract(axis.getP0());
-        double t = Util.alignZero(axis.getDir().dotProduct(v));
+        double t = alignZero(axis.getDir().dotProduct(v));
         Point o = axis.getP0().add(axis.getDir().scale(t));
         Vector N = p.subtract(o);
         return N.normalize();
     }
 
     @Override
-    public List<Point> findIntersections(Ray r) {
+    public List<Point> findIntersections(Ray ray) {
         return null;
     }
+
 }
