@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ray {
@@ -34,6 +35,37 @@ public class Ray {
         this.p0 = p0;
     }
 
+    public Point getPoint(double delta ){
+        if (Util.isZero(delta)){
+            return  p0;
+        }
+        return p0.add(dir.scale(delta));
+    }
+
+    /**
+     * find the closest Point to Ray origin
+     * @param pointsList intersections point List
+     * @return closest point
+     */
+    public Point findClosestPoint(List<Point> pointsList){
+        Point result =null;
+        double closestDistance = Double.MAX_VALUE;
+
+        if(pointsList== null){
+            return null;
+        }
+
+        for (Point p: pointsList) {
+            double temp = p.distance(p0);
+            if(temp < closestDistance){
+                closestDistance =temp;
+                result =p;
+            }
+        }
+
+        return  result;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,4 +91,5 @@ public class Ray {
                 ", dir=" + dir +
                 '}';
     }
+
 }

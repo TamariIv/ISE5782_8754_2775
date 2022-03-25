@@ -26,9 +26,9 @@ public class Geometries implements Intersectable {
         Collections.addAll(_intersectablesList, intersectables);
     }
 
-    public void remove(Intersectable... intersectables) {
-        _intersectablesList.removeAll(List.of(intersectables));
-    }
+//    public void remove(Intersectable... intersectables) {
+//        _intersectablesList.removeAll(List.of(intersectables));
+//    }
 
     @Override
     public List<Point> findIntersections(Ray r) {
