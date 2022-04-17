@@ -57,6 +57,37 @@ public class Camera {
         return this;
     }
 
+    /**
+     * Constructing a ray through a pixel
+     *
+     * @param Nx
+     * @param Ny
+     * @param j
+     * @param i
+     * @return ray from the camera to Pixel[i,j]
+     */
     public Ray constructRay(int Nx, int Ny, int j, int i) {
+        //Image center
+        Point Pc = _p0.add(_vTo.scale(_distance));
+
+        //Ratio (pixel width & height)
+        double Ry = _height/Ny;
+        double Rx = _width/Nx;
+
+        //Pixel[i,j] center
+        Point Pij= Pc;
+
+        //delta values for going to Pixel[i,j] from Pc
+
+        double yI = -(i- (Ny-1)/2d)*Ry;
+        double xJ = -(j- (Nx-1)/2d)*Rx;
+
+        if(!isZero(xJ)) {
+            Pij = Pij.add(_vRight.scale(xJ));
+        }
+        if(!isZero(yI)){
+            Pij = Pij.add(_vUp.scale(yI));
+        }
+        return  new Ray(_p0,_p0.subtract(Pij));
     }
 }
