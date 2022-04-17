@@ -65,26 +65,63 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray r) {
-        Point p0 = r.getP0();
-        Vector v = r.getDir();
+    public List<Point> findIntersections(Ray ray) {
+//        Point p0 = r.getP0();
+//        Vector v = r.getDir();
+//        Vector n = _normal;
+//
+//        // denominator
+//        double nv = n.dotProduct(v);
+//        if (isZero(nv)) {
+//            return null;
+//        }
+//
+//        Vector p0_q = p0.subtract(_p0);
+//        double t = alignZero(n.dotProduct(p0_q)/nv);
+//        // if t < 0 the ray is in the opposite direction
+//        // if t == 0 the ray is
+//        if(t>0){
+//            Point p = p0.add(v.scale(t));
+//            return List.of(p);
+//        }
+//
+//        return null;
+
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
+
         Vector n = _normal;
 
-        // denominator
-        double nv = n.dotProduct(v);
-        if (isZero(nv)) {
+        if(_p0.equals(P0)){
+            return  null;
+        }
+
+        Vector P0_Q0 = _p0.subtract(P0);
+
+        //numerator
+        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
+
+        //
+        if (isZero(nP0Q0 )){
             return null;
         }
 
-        Vector p0_q = p0.subtract(_p0);
-        double t = alignZero(n.dotProduct(p0_q)/nv);
-        // if t < 0 the ray is in the opposite direction
-        // if t == 0 the ray is
-        if(t>0){
-            Point p = p0.add(v.scale(t));
-            return List.of(p);
+        //denominator
+        double nv = alignZero(n.dotProduct(v));
+
+        // ray is lying in the plane axis
+        if(isZero(nv)){
+            return null;
         }
 
-        return null;
+        double  t = alignZero(nP0Q0  / nv);
+
+        if (t <=0){
+            return  null;
+        }
+
+        Point point = ray.getPoint(t);
+
+        return List.of(point);
     }
 }

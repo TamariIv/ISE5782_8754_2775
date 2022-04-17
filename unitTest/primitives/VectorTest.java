@@ -58,7 +58,7 @@ class VectorTest {
 
 
             // ============ Equivalence Partitions Tests ==============
-            Vector vr = v1.crossProduct(v2);
+            Vector vr = v1.crossProduct(v3);
 
             // TC01: Test that length of cross-product is proper (orthogonal vectors taken
             // for simplicity)

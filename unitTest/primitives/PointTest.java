@@ -9,9 +9,10 @@ class PointTest {
 
     Point p1 = new Point(1, 2, 3);
     Point p2 = new Point(-2, -4, -6);
+
     @Test
     void testDistanceSquared() {
-        assertEquals(p1.distanceSquared(p2),126.0,"ERROR: DistanceSquared() wrong value");
+        assertEquals(126.0, p1.distanceSquared(p2),"ERROR: DistanceSquared() wrong value");
     }
 
     @Test
