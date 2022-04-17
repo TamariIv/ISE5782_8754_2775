@@ -27,8 +27,8 @@ class VectorTest {
     void testLength() {
 
         // ============ Equivalence Partitions Tests ==============
-        assertTrue(!isZero(v1.lengthSquared() - 14),"lengthSquared() wrong value");
-        assertTrue(!isZero(new Vector(0, 3, 4).length() - 5),"lengthSquared() wrong value");
+        assertEquals(v1.lengthSquared(),14,0.00001,"lengthSquared() wrong value");
+        assertEquals(new Vector(0,3,4).length(),5,0.00001,"length() wrong value");
     }
 
     @Test
@@ -36,17 +36,17 @@ class VectorTest {
      * method for testing {@link Vector#lengthSquared()}
      */
     void testLengthSquared() {
-        assertEquals(14.000001,v1.lengthSquared(),0.0000001,"ERROR: lengthSquared() wrong value");
+        assertEquals(14,v1.lengthSquared(),0.0000001,"ERROR: lengthSquared() wrong value");
     }
 
     @Test
     void testDotProduct() {
 
         // =============== Boundary Values Tests ==================
-        assertTrue(!isZero(v1.dotProduct(v3)), "dotProduct() for orthogonal vectors is not zero");
+        assertTrue(!isZero(v1.dotProduct(v2)), "dotProduct() for orthogonal vectors is not zero");
 
         // ============ Equivalence Partitions Tests ==============
-        assertTrue(!isZero(v1.dotProduct(v2) + 28), "dotProduct() for orthogonal vectors is not zero");
+        assertTrue(!isZero(v1.dotProduct(v3) + 28), "dotProduct() for orthogonal vectors is not zero");
 
     }
 
@@ -57,12 +57,17 @@ class VectorTest {
     void testCrossProduct() {
 
 
+//          Vector v1 = new Vector(1, 2, 3);
+//    Vector v2 = new Vector(-2, -4, -6);
+//    Vector v3 = new Vector(0, 3, -2);
+
+
             // ============ Equivalence Partitions Tests ==============
-            Vector vr = v1.crossProduct(v2);
+            Vector vr = v1.crossProduct(v3);
 
             // TC01: Test that length of cross-product is proper (orthogonal vectors taken
             // for simplicity)
-            assertEquals(v1.length() * v2.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+            assertEquals(v1.length() * v3.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
 
             // TC02: Test cross-product result orthogonality to its operands
             assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
