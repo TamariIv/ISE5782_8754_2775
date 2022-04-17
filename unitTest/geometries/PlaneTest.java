@@ -43,8 +43,8 @@ class PlaneTest {
         Plane pl = new Plane(new Point(0, 0, 1), new Vector(1, 1, 1));
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray into plane
-        assertEquals(List.of(new Point(1, 0, 0)),
-                pl.findIntersections(new Ray(new Point(0.5, 0, 0), new Vector(1, 0, 0))),
+        assertTrue(List.of(new Point(1, 0, 0)) ==
+                        pl.findIntersections(new Ray(new Point(0.5, 0, 0), new Vector(1, 0, 0))),
                 "Bad plane intersection");
 
         // TC02: Ray out of plane

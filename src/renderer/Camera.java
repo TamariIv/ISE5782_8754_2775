@@ -41,7 +41,7 @@ public class Camera {
      * @return instance of camera for chaining
      */
     public Camera setVPDistance(double distance){
-        _distance = distance
+        _distance = distance;
         return this;
     }
 
@@ -82,10 +82,10 @@ public class Camera {
         double yI = -(i- (Ny-1)/2d)*Ry;
         double xJ = -(j- (Nx-1)/2d)*Rx;
 
-        if(!isZero(xJ)) {
+        if(!Util.isZero(xJ)) {
             Pij = Pij.add(_vRight.scale(xJ));
         }
-        if(!isZero(yI)){
+        if(!Util.isZero(yI)){
             Pij = Pij.add(_vUp.scale(yI));
         }
         return  new Ray(_p0,_p0.subtract(Pij));
