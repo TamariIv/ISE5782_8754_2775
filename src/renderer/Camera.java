@@ -57,6 +57,6 @@ public class Camera {
         return this;
     }
 
-    public Ray constructRay(int i, int i1, int i2, int i3) {
+    public Ray constructRay(int Nx, int Ny, int j, int i) {
     }
 }
