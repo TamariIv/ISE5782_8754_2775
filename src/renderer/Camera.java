@@ -2,8 +2,6 @@ package renderer;
 
 import primitives.*;
 
-import static primitives.Util.isZero;
-
 /**
  * camera producing ray through a view plane
  */
@@ -25,7 +23,7 @@ public class Camera {
      * @param vTo
      */
     public Camera(Point p0, Vector vUp, Vector vTo) {
-        if(!isZero(vUp.dotProduct(vTo)))
+        if(!Util.isZero(vUp.dotProduct(vTo)))
             throw new IllegalArgumentException("vTo and vUp should be orthogonal");
         _p0 = p0;
 
@@ -84,10 +82,10 @@ public class Camera {
         double yI = -(i- (Ny-1)/2d)*Ry;
         double xJ = -(j- (Nx-1)/2d)*Rx;
 
-        if(!isZero(xJ)) {
+        if(!Util.isZero(xJ)) {
             Pij = Pij.add(_vRight.scale(xJ));
         }
-        if(!isZero(yI)){
+        if(!Util.isZero(yI)){
             Pij = Pij.add(_vUp.scale(yI));
         }
         return  new Ray(_p0,_p0.subtract(Pij));
