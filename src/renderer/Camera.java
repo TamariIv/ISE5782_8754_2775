@@ -7,6 +7,7 @@ import primitives.*;
  */
 public class Camera {
 
+
     private Vector _vTo;            // vector pointing towards the scene
     private Vector _vUp;            // vector pointing upwards
     private Vector _vRight;
@@ -15,6 +16,37 @@ public class Camera {
     private double _distance;       // camera distance from view plane
     private double _width;          // view plane width
     private double _height;         // view plane height
+
+
+    public Vector getvTo() {
+        return _vTo;
+    }
+
+    public Vector getvUp() {
+        return _vUp;
+    }
+
+    public Vector getvRight() {
+        return _vRight;
+    }
+
+    public Point getP0() {
+        return _p0;
+    }
+
+    public double getDistance() {
+        return _distance;
+    }
+
+    public double getWidth() {
+        return _width;
+    }
+
+    public double getHeight() {
+        return _height;
+    }
+
+
 
     /**
      *
