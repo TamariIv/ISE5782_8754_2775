@@ -2,6 +2,8 @@ package renderer;
 
 import primitives.*;
 
+import static primitives.Util.isZero;
+
 /**
  * camera producing ray through a view plane
  */
@@ -54,8 +56,8 @@ public class Camera {
      * @param vUp
      * @param vTo
      */
-    public Camera(Point p0, Vector vUp, Vector vTo) {
-        if(!Util.isZero(vUp.dotProduct(vTo)))
+    public Camera(Point p0, Vector vTo, Vector vUp) {
+        if(!isZero(vUp.dotProduct(vTo)))
             throw new IllegalArgumentException("vTo and vUp should be orthogonal");
         _p0 = p0;
 
@@ -91,14 +93,12 @@ public class Camera {
 
     /**
      * Constructing a ray through a pixel
-     *
      * @param Nx
      * @param Ny
      * @param j
      * @param i
      * @return ray from the camera to Pixel[i,j]
      */
-
       public Ray constructRay(int Nx, int Ny, int j, int i) {
 
             // Image center ---> Pc = p0 + distance * vTo
@@ -113,10 +113,10 @@ public class Camera {
             double xJ = (j - (Nx-1)/2d)*Rx;
 
             // movement to middle of pixel ij
-            if(!Util.isZero(xJ)){
+            if(!isZero(xJ)){
                 Pij = Pij.add(_vRight.scale(xJ));
             }
-            if(!Util.isZero(yI)){
+            if(!isZero(yI)){
                 Pij = Pij.add(_vUp.scale(yI));
             }
             //return ray from camera to view plane ij coordinates
