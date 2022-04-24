@@ -148,20 +148,24 @@ public class Camera {
             if (rayTracer == null) {
                 throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
             }
-//
-//                //rendering the image
-//                int nX = imageWriter.getNx();
-//                int nY = imageWriter.getNy();
-//                for (int i = 0; i < nY; i++) {
-//                    for (int j = 0; j < nX; j++) {
-//                        Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
-//                        Color pixelColor = rayTracer.traceRay(ray);
-//                        imageWriter.writePixel(j, i, pixelColor);
-//                    }
-//                }
+
+                //rendering the image
+                int nX = imageWriter.getNx();
+                int nY = imageWriter.getNy();
+                for (int i = 0; i < nY; i++) {
+                    for (int j = 0; j < nX; j++) {
+                        imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
+                    }
+                }
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
+    }
+
+    private Color castRay(int nX, int nY, int j, int i) {
+        Ray ray = constructRay(nX, nY, j, i);
+        Color pixelColor = rayTracer.traceRay(ray);
+        return pixelColor;
     }
 
     public void printGrid(int interval, Color color) {
@@ -177,7 +181,6 @@ public class Camera {
             }
         }
     }
-
 
     public void writeToImage() {
         if (imageWriter == null)
