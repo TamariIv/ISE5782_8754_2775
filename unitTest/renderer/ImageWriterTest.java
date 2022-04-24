@@ -5,8 +5,14 @@ import primitives.Color;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link ImageWriter} class.
+ */
 class ImageWriterTest {
 
+    /**
+     * Test method for {@link ImageWriter#writeToImage()}.
+     */
     @Test
     void testWriteToImage() {
         int nX = 800;
