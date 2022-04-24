@@ -22,8 +22,8 @@ class ImageWriterTest {
         Color yellowColor = new Color(255d, 255d, 0d);
         Color redColor = new Color(255d, 0d, 0d);
         ImageWriter imageWriter = new ImageWriter("yellowsubmarine", nX, nY);
-        for (int i = 0; i < nX; i++) {
-            for (int j = 0; j < nY; j++) {
+        for (int i = 0; i < nY; i++) {
+            for (int j = 0; j < nX; j++) {
                 if (i % 50 == 0 || j % 50 == 0) {
                     imageWriter.writePixel(i, j, redColor);
                 }

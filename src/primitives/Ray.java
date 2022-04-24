@@ -29,10 +29,8 @@ public class Ray {
      * @param dir direction - object of type Vector
      */
     public Ray(Point p0, Vector dir) {
-        if(!(dir.length() == 1))
-            this.dir = dir.normalize();
-        else this.dir = dir;
         this.p0 = p0;
+        this.dir = dir.normalize();
     }
 
     public Point getPoint(double delta ){
@@ -48,12 +46,12 @@ public class Ray {
      * @return closest point
      */
     public Point findClosestPoint(List<Point> pointsList){
-        Point result =null;
-        double closestDistance = Double.MAX_VALUE;
-
         if(pointsList== null){
             return null;
         }
+
+        Point result =null;
+        double closestDistance = Double.MAX_VALUE;
 
         for (Point p: pointsList) {
             double temp = p.distance(p0);

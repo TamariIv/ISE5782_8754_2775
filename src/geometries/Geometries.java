@@ -26,20 +26,23 @@ public class Geometries implements Intersectable {
         Collections.addAll(_intersectablesList, intersectables);
     }
 
+//    public void remove(Intersectable... intersectables) {
+//        _intersectablesList.removeAll(List.of(intersectables));
+//    }
 
     @Override
-    public List<Point> findIntersections(Ray r) {
+    public List<Point> findIntersections(Ray ray) {
         List<Point> result = null;
         for (Intersectable item : _intersectablesList) {
             //get intersections points of a particular item from _intersectables
-            List<Point> itempoints = item.findIntersections(r);
-            if (itempoints != null) {
+            List<Point> itemPoints = item.findIntersections(ray);
+            if (itemPoints != null) {
                 //first time initialize result to new LinkedList
                 if (result == null) {
                     result = new LinkedList<>();
                 }
                 //add all item points to the resulting list
-                result.addAll(itempoints);
+                result.addAll(itemPoints);
             }
         }
         return result;

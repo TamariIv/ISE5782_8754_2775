@@ -47,7 +47,7 @@ public class Triangle extends Polygon {
         if((s1>0 && s2>0 && s3>0) ||(s1<0 && s2<0 && s3<0))
             return points;
 
-        return super.findIntersections(r);
+        return null;
     }
 
 }
