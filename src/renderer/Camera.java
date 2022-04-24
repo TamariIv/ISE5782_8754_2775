@@ -98,28 +98,28 @@ public class Camera {
      * @param i
      * @return ray from the camera to Pixel[i,j]
      */
-    public Ray constructRay(int Nx, int Ny, int j, int i) {
-        //Image center
-        Point Pc = _p0.add(_vTo.scale(_distance));
 
-        //Ratio (pixel width & height)
-        double Ry = _height/Ny;
-        double Rx = _width/Nx;
+      public Ray constructRay(int Nx, int Ny, int j, int i) {
 
-        //Pixel[i,j] center
-        Point Pij= Pc;
+            // Image center ---> Pc = p0 + distance * vTo
+            Point Pc = _p0.add(_vTo.scale(_distance));
 
-        //delta values for going to Pixel[i,j] from Pc
+            // Ratio (pixel height & width)
+            double Ry = (double) _height / Ny;
+            double Rx = (double) _width / Nx;
 
-        double yI = -(i- (Ny-1)/2d)*Ry;
-        double xJ = -(j- (Nx-1)/2d)*Rx;
+            Point Pij = Pc;
+            double yI = -(i - (Ny-1)/2d)*Ry;
+            double xJ = (j - (Nx-1)/2d)*Rx;
 
-        if(!Util.isZero(xJ)) {
-            Pij = Pij.add(_vRight.scale(xJ));
+            // movement to middle of pixel ij
+            if(!Util.isZero(xJ)){
+                Pij = Pij.add(_vRight.scale(xJ));
+            }
+            if(!Util.isZero(yI)){
+                Pij = Pij.add(_vUp.scale(yI));
+            }
+            //return ray from camera to view plane ij coordinates
+            return new Ray(_p0, Pij.subtract(_p0));
         }
-        if(!Util.isZero(yI)){
-            Pij = Pij.add(_vUp.scale(yI));
-        }
-        return  new Ray(_p0,_p0.subtract(Pij));
-    }
 }
