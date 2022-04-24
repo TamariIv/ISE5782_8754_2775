@@ -33,15 +33,15 @@ public class Point {
     }
 
     public double getX() {
-        return _xyz._d1;
+        return _xyz.d1;
     }
 
     public double getY() {
-        return _xyz._d2;
+        return _xyz.d2;
     }
 
     public double getZ() {
-        return _xyz._d3;
+        return _xyz.d3;
     }
 
 
@@ -76,9 +76,9 @@ public class Point {
      * @return the distance
      */
     public double distanceSquared(Point other) {
-        return (this._xyz._d1 - other._xyz._d1) * (this._xyz._d1 - other._xyz._d1) +
-                (this._xyz._d2 - other._xyz._d2) * (this._xyz._d2 - other._xyz._d2) +
-                (this._xyz._d3 - other._xyz._d3) * (this._xyz._d3 - other._xyz._d3);
+        return (this._xyz.d1 - other._xyz.d1) * (this._xyz.d1 - other._xyz.d1) +
+                (this._xyz.d2 - other._xyz.d2) * (this._xyz.d2 - other._xyz.d2) +
+                (this._xyz.d3 - other._xyz.d3) * (this._xyz.d3 - other._xyz.d3);
     }
 
     /**
