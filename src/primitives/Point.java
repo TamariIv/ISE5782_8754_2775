@@ -3,6 +3,8 @@ package primitives;
 import java.util.Objects;
 
 public class Point {
+
+    public static final Point ZERO =  new Point(0,0,0);
     final Double3 _xyz;
 
     /**
@@ -85,7 +87,7 @@ public class Point {
      * calculate the distance between two points
      *
      * @param other
-     * @return the calculated distance
+     * @return the calculated distance between two points
      */
     public double distance(Point other) {
         return Math.sqrt(distanceSquared(other));
