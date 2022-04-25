@@ -1,10 +1,10 @@
 package geometries;
 
-import primitives.Color;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
 
 public abstract class Geometry extends Intersectable {
+
+
 
     protected Color emission = Color.BLACK;
 
@@ -15,6 +15,14 @@ public abstract class Geometry extends Intersectable {
     public Color getEmission() {
         return emission;
     }
+    /**
+     * set emission
+     * @param emission set emission to param
+     */
+    public void setEmission(Color emission) {
+        this.emission = emission;
+    }
+
     /**
      * return the normal vector from the shape
      * @param p point to get the normal from {@link Point}
