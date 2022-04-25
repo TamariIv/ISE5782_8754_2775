@@ -10,7 +10,7 @@ import static primitives.Util.alignZero;
 
 import java.util.List;
 
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     Point p0;
     double radius;
 
