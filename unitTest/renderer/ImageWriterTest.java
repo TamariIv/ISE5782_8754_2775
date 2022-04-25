@@ -1,9 +1,6 @@
 package renderer;
 
 import org.junit.jupiter.api.Test;
-import primitives.Color;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for {@link ImageWriter} class.

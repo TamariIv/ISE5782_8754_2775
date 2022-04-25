@@ -11,14 +11,14 @@ public abstract class RayTracerBase {
     /**
      * scene to be colored
      */
-    protected Scene _scene;
+    protected Scene scene;
 
     /**
      * RayTracerBase constructor
      * @param scene instance of Scene
      */
     public RayTracerBase(Scene scene) {
-        _scene = scene;
+        this.scene = scene;
     }
 
     /**

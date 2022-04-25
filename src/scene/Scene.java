@@ -3,9 +3,7 @@ package scene;
 import lighting.AmbientLight;
 import geometries.Geometries;
 import primitives.Color;
-import primitives.Double3;
 
-import static java.awt.Color.black;
 
 public class Scene {
 
