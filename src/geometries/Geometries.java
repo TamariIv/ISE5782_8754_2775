@@ -26,9 +26,6 @@ public class Geometries extends Intersectable {
         Collections.addAll(_intersectablesList, intersectables);
     }
 
-//    public void remove(Intersectable... intersectables) {
-//        _intersectablesList.removeAll(List.of(intersectables));
-//    }
 
     @Override
     public List<Point> findIntersections(Ray ray) {
@@ -47,4 +44,27 @@ public class Geometries extends Intersectable {
         }
         return result;
     }
+
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+
+        List<GeoPoint> intersections = null;
+
+        for (Intersectable geometry : _intersectablesList) {
+
+            // if there are elements in geoIntersections – add them to intersections
+            List<GeoPoint> geoIntersections = geometry.findGeoIntersections(ray);
+
+            if (geoIntersections != null) {
+
+                if (intersections == null) {
+                    intersections = new LinkedList<>();
+                }
+
+                intersections.addAll(geoIntersections);
+            }
+        }
+        return intersections;
+    }
+
 }

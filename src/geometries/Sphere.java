@@ -110,4 +110,41 @@ public class Sphere extends Geometry {
 
         return null;
     }
+
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        if (P0.equals(p0)) {
+            return List.of(new GeoPoint(this,ray.getPoint(radius)));
+        }
+
+        Vector u = p0.subtract(P0);
+        double tm =v.dotProduct(u);
+        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
+
+        if (d >= radius) {
+            return null;
+        }
+
+        double th = alignZero(Math.sqrt(radius * radius - d * d));
+        double t1 = alignZero(tm - th);
+        double t2 = alignZero(tm + th);
+
+        if (t1 > 0 && t2 > 0) {
+            return List.of(new GeoPoint(this, ray.getPoint(t1)),new GeoPoint(this,ray.getPoint(t2)));
+        }
+
+        if (t1 > 0) {
+            return List.of(new GeoPoint(this,ray.getPoint(t1)));
+        }
+
+        if (t2 > 0) {
+            return List.of(new GeoPoint(this,ray.getPoint(t2)));
+        }
+
+        return null;
+    }
 }
+

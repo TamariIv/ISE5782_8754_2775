@@ -56,8 +56,8 @@ public abstract class Intersectable {
         return findGeoIntersectionsHelper(ray);
     }
 
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
-
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        return null;
     }
 
 }

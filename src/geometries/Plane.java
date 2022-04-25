@@ -123,4 +123,38 @@ public class Plane extends Geometry {
 
         return List.of(point);
     }
+
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        //t=n*(q0-Po)/n*v
+        Vector v= ray.getDir();
+        Point p0=ray.getP0();
+
+        //Ray on the plane
+        if(_p0.equals(p0)){
+            return null;
+        }
+
+        double nqp=_normal.dotProduct(_p0.subtract(p0));
+        //Ray on the plane
+        if(isZero(nqp)){
+            return null;
+        }
+
+        double nv= _normal.dotProduct(v);
+
+        if(isZero(nv)){
+            return null;
+        }
+
+        double t=nqp/nv;
+
+        //Ray after the plane
+        if(t<0){
+            return null;
+        }
+
+        Point P=ray.getPoint(t);
+        //Ray crosses the plane
+        return List.of(new GeoPoint(this,P));
+    }
 }

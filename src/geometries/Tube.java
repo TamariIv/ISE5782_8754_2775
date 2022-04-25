@@ -140,5 +140,9 @@ public class Tube extends Geometry {
         else // t2 is behind the head
             return List.of(ray.getPoint(t1));
     }
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        return null;
+    }
 
 }

@@ -1,7 +1,7 @@
 package renderer;
 
 import primitives.*;
-
+import java.awt.Color;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
