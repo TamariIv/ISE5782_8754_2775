@@ -16,8 +16,8 @@ class ImageWriterTest {
         int nY = 500;
 
 //        Color yellowColor = new Color(java.awt.Color.YELLOW);
-        Color yellowColor = new Color(255d, 255d, 0d);
-        Color redColor = new Color(255d, 0d, 0d);
+        primitives.Color yellowColor = new primitives.Color(255d, 255d, 0d);
+        primitives.Color redColor = new primitives.Color(255d, 0d, 0d);
         ImageWriter imageWriter = new ImageWriter("yellowsubmarine", nX, nY);
         for (int i = 0; i < nX; i++) {
             for (int j = 0; j < nY; j++) {

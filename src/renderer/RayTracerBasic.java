@@ -21,7 +21,7 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     @Override
-    public Color traceRay(Ray ray) {
+    public primitives.Color traceRay(Ray ray) {
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
         if (intersections != null) {
             GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);

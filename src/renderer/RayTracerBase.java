@@ -26,6 +26,6 @@ public abstract class RayTracerBase {
      * @param ray ray from the camera
      * @return color of the point
      */
-    public abstract Color traceRay(Ray ray);
+    public abstract primitives.Color traceRay(Ray ray);
 
 }
