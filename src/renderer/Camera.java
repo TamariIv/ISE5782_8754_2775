@@ -162,13 +162,13 @@ public class Camera {
         }
     }
 
-    private Color castRay(int nX, int nY, int j, int i) {
+    private primitives.Color castRay(int nX, int nY, int j, int i) {
         Ray ray = constructRay(nX, nY, j, i);
-        Color pixelColor = rayTracer.traceRay(ray);
+        primitives.Color pixelColor = rayTracer.traceRay(ray);
         return pixelColor;
     }
 
-    public void printGrid(int interval, Color color) {
+    public void printGrid(int interval, primitives.Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
         int nX = imageWriter.getNx();
