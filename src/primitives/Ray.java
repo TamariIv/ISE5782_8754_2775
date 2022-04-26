@@ -1,5 +1,6 @@
 package primitives;
 
+import geometries.Intersectable.GeoPoint;
 import java.util.List;
 import java.util.Objects;
 
@@ -63,8 +64,6 @@ public class Ray {
 
         return  result;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

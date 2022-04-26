@@ -21,8 +21,8 @@ public abstract class Intersectable {
     }
 
     public static class GeoPoint {
-        public  Geometry geometry;
-        public  Point point;
+        public Geometry geometry;
+        public Point point;
 
         /**
          * Constructor for initialize point and geometry
@@ -32,6 +32,8 @@ public abstract class Intersectable {
         public GeoPoint(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
+
+
         }
 
         @Override
