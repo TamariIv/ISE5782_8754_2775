@@ -34,9 +34,9 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
-    public Point getPoint(double delta ){
-        if (Util.isZero(delta)){
-            return  p0;
+    public Point getPoint(double delta) {
+        if (Util.isZero(delta)) {
+            return p0;
         }
         return p0.add(dir.scale(delta));
     }
@@ -46,31 +46,33 @@ public class Ray {
      * @param pointsList intersections point List
      * @return closest point
      */
-    public Point findClosestPoint(List<Point> pointsList){
-        if(pointsList== null){
+    public Point findClosestPoint(List<Point> pointsList) {
+        if (pointsList == null) {
             return null;
         }
 
-        Point result =null;
+        Point result = null;
         double closestDistance = Double.MAX_VALUE;
 
-        for (Point p: pointsList) {
+        for (Point p : pointsList) {
             double temp = p.distance(p0);
-            if(temp < closestDistance){
-                closestDistance =temp;
-                result =p;
+            if (temp < closestDistance) {
+                closestDistance = temp;
+                result = p;
             }
         }
 
         return  result;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
         if (!(o instanceof Ray)) return false;
-        Ray other = (Ray)o;
+        Ray other = (Ray) o;
         return this.dir.equals(other.dir) && this.p0.equals(other.p0);
     }
 
@@ -89,5 +91,30 @@ public class Ray {
                 "p0=" + p0 +
                 ", dir=" + dir +
                 '}';
+    }
+
+    /**
+     * @param intersections
+     * @return The closest point to the began of the ray
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
+        double minDistance = Double.MAX_VALUE;
+        double d;
+        GeoPoint closePoint = null;
+
+        if (intersections == null) {
+            return null;
+        }
+
+        for (GeoPoint geoP : intersections) {
+
+            d = geoP.point.distance(p0);
+            //check if the distance of p is smaller then minDistance
+            if (d < minDistance) {
+                minDistance = d;
+                closePoint = geoP;
+            }
+        }
+        return closePoint;
     }
 }

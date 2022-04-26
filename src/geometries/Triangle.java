@@ -49,5 +49,9 @@ public class Triangle extends Polygon {
 
         return null;
     }
-
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        //TO DO
+        return null;
+    }
 }
