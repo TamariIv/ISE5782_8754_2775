@@ -1,8 +1,12 @@
 package scene;
 
-import lighting.AmbientLight;
+import Lighting.AmbientLight;
+import Lighting.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Scene {
@@ -12,6 +16,12 @@ public class Scene {
     public AmbientLight ambientLight = new AmbientLight();              //The default of ambient light is black
     public Geometries geometries = null;                                //The geometry object in context of the scene
 
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
+    }
+
+    public List<LightSource> lights = new LinkedList<>();
 
     /**
      * create Scene
