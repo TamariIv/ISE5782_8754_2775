@@ -76,12 +76,12 @@ public class Cylinder extends Tube {
         Point o = axis.getP0().add(u);
         return p.subtract(o).normalize();
     }
+
+
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        return super.findGeoIntersections(ray);
+        return null;
     }
 }
 
-//    @Override
-//    public List<Point> findIntersections(Ray r) {
-//    }
+

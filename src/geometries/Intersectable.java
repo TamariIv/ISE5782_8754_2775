@@ -13,11 +13,12 @@ public abstract class Intersectable {
     /**
      * find all intersection points from the array
      *
-     * @param r ray pointing towards graphic object
+     * @param ray ray pointing towards graphic object
      * @return immutable list of intersection points {@link Point}
      */
-    public List<Point> findIntersections(Ray r) {
-        return null;
+    public final List<Point> findIntersections(Ray ray) {
+        List<GeoPoint> geoList = findGeoIntersections(ray);
+        return geoList == null? null: geoList.stream().map(gp -> gp.point).toList();
     }
 
     public static class GeoPoint {
@@ -32,8 +33,6 @@ public abstract class Intersectable {
         public GeoPoint(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
-
-
         }
 
         @Override
@@ -58,8 +57,6 @@ public abstract class Intersectable {
         return findGeoIntersectionsHelper(ray);
     }
 
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return null;
-    }
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
 }

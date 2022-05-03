@@ -63,8 +63,8 @@ public class Plane extends Geometry {
         return getNormal();
     }
 
-    @Override
-    public List<Point> findIntersections(Ray ray) {
+//    @Override
+//    public List<Point> findIntersections(Ray ray) {
 //        Point p0 = r.getP0();
 //        Vector v = r.getDir();
 //        Vector n = _normal;
@@ -85,46 +85,46 @@ public class Plane extends Geometry {
 //        }
 //
 //        return null;
+//
+//        Point P0 = ray.getP0();
+//        Vector v = ray.getDir();
+//
+//        Vector n = _normal;
+//
+//        if(_p0.equals(P0)){
+//            return  null;
+//        }
+//
+//        Vector P0_Q0 = _p0.subtract(P0);
+//
+//        //numerator
+//        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
+//
+//        //
+//        if (isZero(nP0Q0 )){
+//            return null;
+//        }
+//
+//        //denominator
+//        double nv = alignZero(n.dotProduct(v));
+//
+//        // ray is lying in the plane axis
+//        if(isZero(nv)){
+//            return null;
+//        }
+//
+//        double  t = alignZero(nP0Q0  / nv);
+//
+//        if (t <=0){
+//            return  null;
+//        }
+//
+//        Point point = ray.getPoint(t);
+//
+//        return List.of(point);
+//    }
 
-        Point P0 = ray.getP0();
-        Vector v = ray.getDir();
-
-        Vector n = _normal;
-
-        if(_p0.equals(P0)){
-            return  null;
-        }
-
-        Vector P0_Q0 = _p0.subtract(P0);
-
-        //numerator
-        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
-
-        //
-        if (isZero(nP0Q0 )){
-            return null;
-        }
-
-        //denominator
-        double nv = alignZero(n.dotProduct(v));
-
-        // ray is lying in the plane axis
-        if(isZero(nv)){
-            return null;
-        }
-
-        double  t = alignZero(nP0Q0  / nv);
-
-        if (t <=0){
-            return  null;
-        }
-
-        Point point = ray.getPoint(t);
-
-        return List.of(point);
-    }
-
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         //t=n*(q0-Po)/n*v
         Vector v= ray.getDir();
         Point p0=ray.getP0();

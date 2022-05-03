@@ -2,6 +2,7 @@ package renderer;
 
 import geometries.Intersectable;
 import lighting.LightSource;
+import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
@@ -57,10 +58,11 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     private Color calcLocalEffects(Intersectable.GeoPoint intersection, Ray ray){
+
         Vector v = ray.getDir ();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
-        if (nv == 0) 
+        if (nv == 0)
             return Color.BLACK;
         int nShininess = intersection.geometry.getMaterial().nShininess;
         double kd = intersection.geometry.getMaterial().nShininess, ks = intersection.geometry.getMaterial().nShininess;

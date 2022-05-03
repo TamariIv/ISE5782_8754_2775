@@ -68,51 +68,50 @@ public class Sphere extends Geometry {
         return N.normalize();
     }
 
+//    @Override
+//    public List<Point> findIntersections(Ray ray) {
+//
+//        Point P0 = ray.getP0();
+//        Vector v = ray.getDir();
+//
+//        if (P0.equals(p0)) {
+//            return List.of(p0.add(v.scale(radius)));
+//        }
+//
+//        Vector u = p0.subtract(P0);
+//        double tm = alignZero(v.dotProduct(u));
+//        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
+//
+//        // no intersections : the ray direction is above the sphere
+//        if (d >= radius) {
+//            return null;
+//        }
+//
+//        double th = alignZero(Math.sqrt(radius * radius - d * d));
+//        double t1 = alignZero(tm - th);
+//        double t2 = alignZero(tm + th);
+//
+//        if (t1 > 0 && t2 > 0) {
+//            Point P1 = P0.add(v.scale(t1));
+//            Point P2 = P0.add(v.scale(t2));
+//            return List.of(P1, P2);
+//        }
+//
+//        if (t1 > 0) {
+//            Point P1 = P0.add(v.scale(t1));
+//            return List.of(P1);
+//        }
+//
+//        if (t2 > 0) {
+//           Point P2 = P0.add(v.scale(t2));
+//           return List.of(P2);
+//        }
+//
+//        return null;
+//    }
+
     @Override
-    public List<Point> findIntersections(Ray ray) {
-
-
-        Point P0 = ray.getP0();
-        Vector v = ray.getDir();
-
-        if (P0.equals(p0)) {
-            return List.of(p0.add(v.scale(radius)));
-        }
-
-        Vector u = p0.subtract(P0);
-        double tm = alignZero(v.dotProduct(u));
-        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
-
-        // no intersections : the ray direction is above the sphere
-        if (d >= radius) {
-            return null;
-        }
-
-        double th = alignZero(Math.sqrt(radius * radius - d * d));
-        double t1 = alignZero(tm - th);
-        double t2 = alignZero(tm + th);
-
-        if (t1 > 0 && t2 > 0) {
-            Point P1 = P0.add(v.scale(t1));
-            Point P2 = P0.add(v.scale(t2));
-            return List.of(P1, P2);
-        }
-
-        if (t1 > 0) {
-            Point P1 = P0.add(v.scale(t1));
-            return List.of(P1);
-        }
-
-        if (t2 > 0) {
-           Point P2 = P0.add(v.scale(t2));
-           return List.of(P2);
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
 

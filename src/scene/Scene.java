@@ -15,16 +15,20 @@ public class Scene {
     public Color background = Color.BLACK;                               //Color of the background. The default is black
     public AmbientLight ambientLight = new AmbientLight();              //The default of ambient light is black
     public Geometries geometries = null;                                //The geometry object in context of the scene
+    public List<LightSource> lights = new LinkedList<>();
 
+    /**
+     * builder pattern set list of light sources
+     * @param lights light sources in the scene
+     * @return this scene
+     */
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;
         return this;
     }
 
-    public List<LightSource> lights = new LinkedList<>();
-
     /**
-     * create Scene
+     * ctor create Scene
      * @param name of the scene
      */
     public Scene(String name) {
