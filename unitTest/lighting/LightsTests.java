@@ -2,9 +2,9 @@ package lighting;
 
 import org.junit.jupiter.api.Test;
 
-import Lighting.*;
 import geometries.*;
 import primitives.*;
+import lighting.*;
 import renderer.*;
 import scene.Scene;
 import static java.awt.Color.*;
@@ -67,7 +67,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightSpherePoint", 500, 500);
 		camera1.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene1)) //
+				.setRayTracerBase(new RayTracerBasic(scene1)) //
 				.renderImage() //
 				.writeToImage(); //
 	}
@@ -82,7 +82,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereSpot", 500, 500);
 		camera1.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene1)) //
+				.setRayTracerBase(new RayTracerBasic(scene1)) //
 				.renderImage() //
 				.writeToImage(); //
 	}
@@ -97,7 +97,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesDirectional", 500, 500);
 		camera2.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene2)) //
+				.setRayTracerBase(new RayTracerBasic(scene2)) //
 				.renderImage() //
 				.writeToImage(); //
 	}
@@ -112,7 +112,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesPoint", 500, 500);
 		camera2.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene2)) //
+				.setRayTracerBase(new RayTracerBasic(scene2)) //
 				.renderImage() //
 				.writeToImage(); //
 	}
@@ -127,40 +127,45 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpot", 500, 500);
 		camera2.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene2)) //
+				.setRayTracerBase(new RayTracerBasic(scene2)) //
 				.renderImage() //
 				.writeToImage(); //
 	}
 
-	/**
-	 * Produce a picture of a sphere lighted by a narrow spot light
-	 */
-	@Test
-	public void sphereSpotSharp() {
-		scene1.geometries.add(sphere);
-		scene1.lights
-				.add(new SpotLight(spCL, spPL, new Vector(1, 1, -0.5)).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
-
-		ImageWriter imageWriter = new ImageWriter("lightSphereSpotSharp", 500, 500);
-		camera1.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene1)) //
-				.renderImage() //
-				.writeToImage(); //
-	}
-
-	/**
-	 * Produce a picture of a two triangles lighted by a narrow spot light
-	 */
-	@Test
-	public void trianglesSpotSharp() {
-		scene2.geometries.add(triangle1, triangle2);
-		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
-
-		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpotSharp", 500, 500);
-		camera2.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene2)) //
-				.renderImage() //
-				.writeToImage(); //
-	}
+//	/**
+//	 * Produce a picture of a sphere lighted by a narrow spot light
+//	 */
+//	@Test
+//	public void sphereSpotSharp() {
+//		scene1.geometries.add(sphere);
+////		scene1.lights
+////				.add(new SpotLight(spCL, spPL, new Vector(1, 1, -0.5)).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+//
+//		scene1.lights
+//				.add(new SpotLight(spCL, spPL, new Vector(1, 1, -0.5)).setKl(0.001).setKq(0.00004));
+//
+//		ImageWriter imageWriter = new ImageWriter("lightSphereSpotSharp", 500, 500);
+//		camera1.setImageWriter(imageWriter) //
+//				.setRayTracerBase(new RayTracerBasic(scene1)) //
+//				.renderImage() //
+//				.writeToImage(); //
+//	}
+//
+//	/**
+//	 * Produce a picture of a two triangles lighted by a narrow spot light
+//	 */
+//	@Test
+//	public void trianglesSpotSharp() {
+//		scene2.geometries.add(triangle1, triangle2);
+////		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+//		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setKl(0.001).setKq(0.00004));
+//
+//
+//		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpotSharp", 500, 500);
+//		camera2.setImageWriter(imageWriter) //
+//				.setRayTracerBase(new RayTracerBasic(scene2)) //
+//				.renderImage() //
+//				.writeToImage(); //
+//	}
 
 }
