@@ -3,7 +3,7 @@ package primitives;
 public class Material {
     public Double3 kD = new Double3(0);
     public Double3 ks = new Double3(0);
-    int nShininess = 0;
+    public int nShininess = 0;
 
     public Material setkD(Double3 kD) {
         this.kD = kD;
