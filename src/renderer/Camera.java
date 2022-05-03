@@ -1,6 +1,7 @@
 package renderer;
 
 import primitives.*;
+
 import java.awt.Color;
 import java.util.MissingResourceException;
 
@@ -140,7 +141,7 @@ public class Camera {
         return new Ray(_p0, Pij.subtract(_p0));
     }
 
-    public void renderImage() {
+    public Camera renderImage() {
         try {
             if (imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
@@ -149,17 +150,18 @@ public class Camera {
                 throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
             }
 
-                //rendering the image
-                int nX = imageWriter.getNx();
-                int nY = imageWriter.getNy();
-                for (int i = 0; i < nY; i++) {
-                    for (int j = 0; j < nX; j++) {
-                        imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
-                    }
+            //rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
                 }
+            }
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
+        return this;
     }
 
     private primitives.Color castRay(int nX, int nY, int j, int i) {
