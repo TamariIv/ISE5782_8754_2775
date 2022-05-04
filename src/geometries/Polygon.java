@@ -90,51 +90,51 @@ public class Polygon extends Geometry {
 	}
 
 
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//		List<Point> planeIntersections = plane.findIntersections(ray);
+//
+//		if (planeIntersections == null) {
+//			return null;
+//		}
+//
+//		Point P0 = ray.getP0();
+//		Vector v = ray.getDir();
+//
+//		Point P1 = vertices.get(1);
+//		Point P2 = vertices.get(0);
+//
+//		Vector v1 = P1.subtract(P0);
+//		Vector v2 = P2.subtract(P0);
+//
+//		double sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+//
+//		if (isZero(sign)) {
+//			return null;
+//		}
+//
+//		boolean positive = sign > 0;
+//
+//		//iterate through all vertices of the polygon
+//		for (int i = vertices.size() - 1; i > 0; --i) {
+//			v1 = v2;
+//			v2 = vertices.get(i).subtract(P0);
+//
+//			sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+//			if (isZero(sign)) {
+//				return null;
+//			}
+//
+//			if (positive != (sign > 0)) {
+//				return null;
+//			}
+//		}
+//
+//		return planeIntersections;
+//	}
+
 	@Override
-	public List<Point> findIntersections(Ray ray) {
-		List<Point> planeIntersections = plane.findIntersections(ray);
-
-		if (planeIntersections == null) {
-			return null;
-		}
-
-		Point P0 = ray.getP0();
-		Vector v = ray.getDir();
-
-		Point P1 = vertices.get(1);
-		Point P2 = vertices.get(0);
-
-		Vector v1 = P1.subtract(P0);
-		Vector v2 = P2.subtract(P0);
-
-		double sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
-
-		if (isZero(sign)) {
-			return null;
-		}
-
-		boolean positive = sign > 0;
-
-		//iterate through all vertices of the polygon
-		for (int i = vertices.size() - 1; i > 0; --i) {
-			v1 = v2;
-			v2 = vertices.get(i).subtract(P0);
-
-			sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
-			if (isZero(sign)) {
-				return null;
-			}
-
-			if (positive != (sign > 0)) {
-				return null;
-			}
-		}
-
-		return planeIntersections;
-	}
-
-	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) {
+	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 		List<GeoPoint>result=plane.findGeoIntersections(ray);
 
 		if (result==null){
