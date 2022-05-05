@@ -16,7 +16,7 @@ public abstract class Intersectable {
      * @param ray ray pointing towards graphic object
      * @return immutable list of intersection points {@link Point}
      */
-    public final List<Point> findIntersections(Ray ray) {
+    public List<Point> findIntersections(Ray ray) {
         List<GeoPoint> geoList = findGeoIntersections(ray);
         return geoList == null? null: geoList.stream().map(gp -> gp.point).toList();
     }
