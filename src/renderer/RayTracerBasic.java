@@ -17,6 +17,10 @@ import static primitives.Util.alignZero;
 public class RayTracerBasic extends RayTracerBase {
 
     /**
+     * constant for moving shading rays
+     */
+    private static final double DELTA = 0.1;
+    /**
      * Constructor
      * @param scene that the ray cross
      */
@@ -72,9 +76,11 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point).normalize();
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(calcDiffusive(kd, nl, lightIntensity),
-                        calcSpecular(ks, l, n,nl, v, nShininess, lightIntensity));
+                if (unshaded(intersection, l, n)){
+                    Color lightIntensity = lightSource.getIntensity(intersection.point);
+                    color = color.add(calcDiffusive(kd, nl, lightIntensity),
+                            calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
+                }
             }
         }
         return color;
@@ -100,6 +106,15 @@ public class RayTracerBasic extends RayTracerBase {
         return lightIntensity.scale(kd).scale(nl);
 //        double ln=alignZero(Math.abs(n.dotProduct(l)));
 //        return lightIntensity.scale(kd*ln);
+    }
+
+
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n){
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Ray lightRay = new Ray(gp.point, lightDirection);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        return intersections == null;
+
     }
 
 }
