@@ -27,26 +27,26 @@ public class Geometries extends Intersectable {
     }
 
 
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
-        for (Intersectable item : _intersectablesList) {
-            //get intersections points of a particular item from _intersectables
-            List<Point> itemPoints = item.findIntersections(ray);
-            if (itemPoints != null) {
-                //first time initialize result to new LinkedList
-                if (result == null) {
-                    result = new LinkedList<>();
-                }
-                //add all item points to the resulting list
-                result.addAll(itemPoints);
-            }
-        }
-        return result;
-    }
+//    @Override
+//    public List<Point> findIntersections(Ray ray) {
+//        List<Point> result = null;
+//        for (Intersectable item : _intersectablesList) {
+//            //get intersections points of a particular item from _intersectables
+//            List<Point> itemPoints = item.findIntersections(ray);
+//            if (itemPoints != null) {
+//                //first time initialize result to new LinkedList
+//                if (result == null) {
+//                    result = new LinkedList<>();
+//                }
+//                //add all item points to the resulting list
+//                result.addAll(itemPoints);
+//            }
+//        }
+//        return result;
+//    }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 
         List<GeoPoint> intersections = null;
 
