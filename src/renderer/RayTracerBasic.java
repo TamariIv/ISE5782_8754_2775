@@ -20,6 +20,8 @@ public class RayTracerBasic extends RayTracerBase {
      * constant for moving shading rays
      */
     private static final double DELTA = 0.1;
+    private static final double EPS = 0.1;
+
     /**
      * Constructor
      * @param scene that the ray cross
@@ -108,13 +110,21 @@ public class RayTracerBasic extends RayTracerBase {
 //        return lightIntensity.scale(kd*ln);
     }
 
-
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n){
+    private boolean unshaded(GeoPoint gp , Vector l, Vector n) {
         Vector lightDirection = l.scale(-1); // from point to light source
-        Ray lightRay = new Ray(gp.point, lightDirection);
+        Vector epsVector = n.scale(EPS);
+        Point point = gp.point.add(epsVector);
+        Ray lightRay = new Ray(point, lightDirection);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
         return intersections == null;
-
     }
+
+//        private boolean unshaded(GeoPoint gp, Vector l, Vector n){
+//        Vector lightDirection = l.scale(-1); // from point to light source
+//        Ray lightRay = new Ray(gp.point, lightDirection);
+//        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+//        return intersections == null;
+//
+//    }
 
 }
