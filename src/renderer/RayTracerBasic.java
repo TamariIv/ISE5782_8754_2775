@@ -59,7 +59,6 @@ public class RayTracerBasic extends RayTracerBase {
 //        // add calculated light contribution from all light sources)
 //        return baseColor.add(calcLocalEffects(point, ray));;
         return scene.ambientLight.getIntensity()
-                .add(point.geometry.getEmission())
                 .add(calcLocalEffects(point, ray));
     }
 
@@ -67,18 +66,20 @@ public class RayTracerBasic extends RayTracerBase {
 
         Vector v = ray.getDir ();
         Vector n = intersection.geometry.getNormal(intersection.point);
+        Color color = intersection.geometry.getEmission();
+
         double nv = alignZero(n.dotProduct(v));
         if (nv == 0)
             return Color.BLACK;
         int nShininess = intersection.geometry.getMaterial().nShininess;
         Double3 kd = intersection.geometry.getMaterial().kD;
         Double3 ks = intersection.geometry.getMaterial().kS;
-        Color color = Color.BLACK;
+
         for (LightSource lightSource : scene.lights) {
-            Vector l = lightSource.getL(intersection.point).normalize();
+            Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
-            if (nl * nv > 0) { // sign(nl) == sing(nv)
-                if (unshaded(intersection, l, n)){
+            if (nl * nv > 0) { // sign(nl) == sign(nv)
+                if (unshaded(intersection,lightSource, l, n ,nv)){
                     Color lightIntensity = lightSource.getIntensity(intersection.point);
                     color = color.add(calcDiffusive(kd, nl, lightIntensity),
                             calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
@@ -90,10 +91,11 @@ public class RayTracerBasic extends RayTracerBase {
 
     private Color calcSpecular(Double3 ks, Vector l, Vector n, double nl, Vector v,int nShininess, Color lightIntensity) {
         l = l.normalize();
-        Vector r = l.subtract(n.scale(2*nl)).normalize();
-        double d = alignZero(-v.dotProduct(r));
+        Vector r = l.subtract(n.scale(2*nl));
+        double d = -alignZero(v.dotProduct(r));
         if(d <= 0)
             return Color.BLACK;
+
         return lightIntensity.scale(ks.scale(Math.pow(d,nShininess)));
 //        int specularN = 1;
 //        double nl = alignZero(n.dotProduct(l));
@@ -110,13 +112,30 @@ public class RayTracerBasic extends RayTracerBase {
 //        return lightIntensity.scale(kd*ln);
     }
 
-    private boolean unshaded(GeoPoint gp , Vector l, Vector n) {
+    private boolean unshaded(GeoPoint gp ,LightSource lightSource, Vector l, Vector n,double nv) {
         Vector lightDirection = l.scale(-1); // from point to light source
-        Vector epsVector = n.scale(EPS);
+        Vector epsVector;
+        if(nv < 0){
+            epsVector=n.scale(EPS);
+        }
+        else {
+            epsVector = n.scale(-EPS);
+        }
         Point point = gp.point.add(epsVector);
         Ray lightRay = new Ray(point, lightDirection);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-        return intersections == null;
+        double maxDistance = lightSource.getDistance(gp.point);
+        if(intersections == null){
+            return true;
+        }
+        for( var geo : intersections){
+            double distance = geo.point.distance(gp.point);
+            if(distance >= maxDistance){
+                intersections.remove(geo);
+            }
+        }
+
+        return ( intersections.isEmpty());
     }
 
 //        private boolean unshaded(GeoPoint gp, Vector l, Vector n){
