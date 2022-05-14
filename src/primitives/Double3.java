@@ -21,8 +21,12 @@ public class Double3 {
 	public static final Double3 ZERO = new Double3(0, 0, 0);
 
 	/**
+	 * Ones triad (1,1,1)
+	 */
+	public static final Double3 ONE = new Double3(1, 1, 1);
+
+	/**
 	 * Constructor to initialize Double3 based object with its three number values
-	 * 
 	 * @param d1 first number value
 	 * @param d2 second number value
 	 * @param d3 third number value
@@ -35,7 +39,6 @@ public class Double3 {
 
 	/**
 	 * Constructor to initialize Double3 based object the same number values
-	 * 
 	 * @param value number value for all 3 numbers
 	 */
 	public Double3(double value) {
@@ -50,10 +53,9 @@ public class Double3 {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Double3))
-			return false;
-		Double3 other = (Double3) obj;
-		return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
+		if (obj instanceof Double3 other)
+			return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
+		return false;
 	}
 
 	@Override
@@ -99,6 +101,8 @@ public class Double3 {
 		return new Double3(d1 * rhs, d2 * rhs, d3 * rhs);
 	}
 
+	public double toDouble(Double3 d) { return (d.d1==d.d2 && d.d2==d.d3)? d.d1 : null;}
+
 	/**
 	 * Reduce (divide) floating point triad by a number into a new triad where each
 	 * number is divided by the number
@@ -119,6 +123,16 @@ public class Double3 {
 	 */
 	public Double3 product(Double3 rhs) {
 		return new Double3(d1 * rhs.d1, d2 * rhs.d2, d3 * rhs.d3);
+	}
+	
+	/**
+	 * Checks whether all the numbers are lower than a test number
+	 * @param k the test number
+	 * @return true if all the numbers are less than k, false otherwise
+	 */
+
+	public boolean lowerThan(double k) {
+		return d1 < k && d2 < k && d3 < k;
 	}
 
 }
