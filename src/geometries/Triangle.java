@@ -54,4 +54,5 @@ public class Triangle extends Polygon {
 //    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 //        return super.findGeoIntersections(ray);
 //    }
+
 }
