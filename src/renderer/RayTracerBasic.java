@@ -52,10 +52,6 @@ public class RayTracerBasic extends RayTracerBase {
      * @return the color intensity
      */
     private Color calcColor(Intersectable.GeoPoint point, Ray ray) {
-//        Color baseColor = scene.ambientLight.getIntensity().add(point.geometry.getEmission());
-//        return  baseColor;
-//        // add calculated light contribution from all light sources)
-//        return baseColor.add(calcLocalEffects(point, ray));;
         return scene.ambientLight.getIntensity()
                 .add(point.geometry.getEmission())
                 .add(calcLocalEffects(point, ray));
