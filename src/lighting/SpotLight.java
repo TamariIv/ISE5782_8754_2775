@@ -19,8 +19,4 @@ public class SpotLight extends PointLight{
         return super.getIntensity(p).scale((factor));
     }
 
-    @Override
-    public Vector getL(Point p) {
-        return super.getL(p);
-    }
 }
