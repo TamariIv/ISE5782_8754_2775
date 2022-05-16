@@ -1,15 +1,21 @@
 package primitives;
 
 import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 import java.util.Objects;
+
+import static primitives.Util.alignZero;
 
 public class Ray {
     final Point p0;
     final Vector dir;
 
+    private static final double DELTA = 0.1;
+
     /**
      * get the point of the ray
+     *
      * @return point
      */
     public Point getP0() {
@@ -18,6 +24,7 @@ public class Ray {
 
     /**
      * get the direction of the ray
+     *
      * @return direction vector
      */
     public Vector getDir() {
@@ -26,12 +33,26 @@ public class Ray {
 
     /**
      * Ray ctor
-     * @param p0 object of type Point
+     *
+     * @param p0  object of type Point
      * @param dir direction - object of type Vector
      */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
+    }
+
+
+    public Ray(Point head, Vector direction, Vector normal) {
+        this.dir = direction.normalize();
+        double ndir = alignZero(normal.dotProduct(this.dir));
+        Vector delta = (ndir>0)? dir.scale(DELTA): dir.scale(-DELTA);
+//        if (ndir > 0) {
+//            delta = dir.scale(DELTA);
+//        } else {
+//            delta = dir.scale(-DELTA);
+//        }
+        this.p0 = head.add(delta);
     }
 
     public Point getPoint(double delta) {
@@ -43,6 +64,7 @@ public class Ray {
 
     /**
      * find the closest Point to Ray origin
+     *
      * @param pointsList intersections point List
      * @return closest point
      */
@@ -62,9 +84,8 @@ public class Ray {
             }
         }
 
-        return  result;
+        return result;
     }
-
 
 
     @Override
@@ -83,6 +104,7 @@ public class Ray {
 
     /**
      * override toString
+     *
      * @return string representing the ray
      */
     @Override
