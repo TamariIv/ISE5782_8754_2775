@@ -42,12 +42,14 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
-
+//        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
     public Ray(Point head, Vector direction, Vector normal) {
-        this.dir = direction.normalize();
-        double ndir = alignZero(normal.dotProduct(this.dir));
-        Vector delta = (ndir>0)? dir.scale(DELTA): dir.scale(-DELTA);
-//        if (ndir > 0) {
+        Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : -DELTA);
+        this.dir=direction.normalize();
+//        this.dir = direction.normalize();
+//        double ndir = alignZero(normal.dotProduct(this.dir));
+//        Vector delta = (ndir>0)? dir.scale(DELTA): dir.scale(-DELTA);
+////        if (ndir > 0) {
 //            delta = dir.scale(DELTA);
 //        } else {
 //            delta = dir.scale(-DELTA);
