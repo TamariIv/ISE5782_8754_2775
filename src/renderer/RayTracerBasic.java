@@ -86,6 +86,8 @@ public class RayTracerBasic extends RayTracerBase {
         return color;
     }
 
+
+
     private Ray constructRefractedRay(Point point, Vector v, Vector n) {
 //        return new Ray(point, ray.getDir());
         return new Ray(point, v, n);
@@ -101,10 +103,11 @@ public class RayTracerBasic extends RayTracerBase {
 //        Vector r = v.add(n.scale(-2d * vn));
 //        return new Ray(point, r, n);
 
+
         Vector vn = n.scale(-2*v.dotProduct(n));
         Vector r = v.add(vn);
         return new Ray(point, r, n);
-    }
+  }
 
 
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) {
@@ -170,6 +173,7 @@ public class RayTracerBasic extends RayTracerBase {
 //        }
 //        return true;
 //    }
+
 
     private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n, double nv) {
 //        Vector lightDirection = l.scale(-1); // from point to light source
