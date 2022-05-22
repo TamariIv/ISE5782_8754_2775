@@ -105,12 +105,16 @@ public class RayTracerBasic extends RayTracerBase {
 //        return new Ray(point, r);
 //    }
     private Ray constructReflectedRay(Point point, Vector v, Vector n) {
-        v = v.normalize();
-        double vn = v.dotProduct(n);
-        if (isZero(vn)) {
-            return null;
-        }
-        Vector r = v.add(n.scale(-2d * vn));
+//        v = v.normalize();
+//        double vn = v.dotProduct(n);
+//        if (isZero(vn)) {
+//            return null;
+//        }
+//        Vector r = v.add(n.scale(-2d * vn));
+//        return new Ray(point, r, n);
+
+        Vector vn = n.scale(-2*v.dotProduct(n));
+        Vector r = v.add(vn);
         return new Ray(point, r, n);
     }
 
@@ -158,6 +162,21 @@ public class RayTracerBasic extends RayTracerBase {
         return lightIntensity.scale(kd).scale(nl);
     }
 
+//    private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint geopoint) {
+//        Vector lightDirection = l.scale(-1); // from point to light source
+//        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+//        Point point = (Point) geopoint.point.add(delta);
+//        Ray lightRay = new Ray(point, lightDirection);
+//        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+//        if (intersections == null) return true;
+//        double lightDistance = light.getDistance(geopoint.point);
+//        for (GeoPoint gp : intersections) {
+//            if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0)
+//                return false;
+//        }
+//        return true;
+//    }
+
     private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n, double nv) {
 //        Vector lightDirection = l.scale(-1); // from point to light source
 //        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
@@ -178,10 +197,11 @@ public class RayTracerBasic extends RayTracerBase {
 
         for (var geo : intersections) {
             double distance = geo.point.distance(point);
-
             if (distance >= maxDistance) {
                 intersections.remove(geo);
             }
+//            if (alignZero(gp.point.distance(point) - maxDistance) <= 0)
+//                return false;
         }
         return (intersections.isEmpty());
     }
