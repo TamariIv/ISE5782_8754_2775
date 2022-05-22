@@ -96,7 +96,8 @@ public class RayTracerBasic extends RayTracerBase {
 //        return new Ray(point, ray.getDir());
         return new Ray(point, v, n);
     }
-//    private Ray constructRefractedRay(Point point, Vector v, Vector n) {
+
+    //    private Ray constructRefractedRay(Point point, Vector v, Vector n) {
 //        return new Ray(point, v);
 //    }
 //    private Ray constructReflectedRay(Point point, Vector v, Vector n) {
@@ -113,7 +114,7 @@ public class RayTracerBasic extends RayTracerBase {
 //        Vector r = v.add(n.scale(-2d * vn));
 //        return new Ray(point, r, n);
 
-        Vector vn = n.scale(-2*v.dotProduct(n));
+        Vector vn = n.scale(-2 * v.dotProduct(n));
         Vector r = v.add(vn);
         return new Ray(point, r, n);
     }
@@ -135,11 +136,12 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sign(nv)
-                if (unshaded(intersection, lightSource, l, n, nv)) {
+//                if (unshaded(intersection, lightSource, l, n, nv)) {
+
                     Color lightIntensity = lightSource.getIntensity(intersection.point);
                     color = color.add(calcDiffusive(kd, nl, lightIntensity),
                             calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
-                }
+//                }
             }
         }
         return color;
@@ -183,28 +185,57 @@ public class RayTracerBasic extends RayTracerBase {
 //        Point point = gp.point.add(delta);
         Ray lightRay = new Ray(gp.point, l.scale(-1), n);
 
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        double maxDistance = lightSource.getDistance(gp.point);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, maxDistance);
 
         if (intersections == null) {
             return true;
         }
-        Point point = gp.point;
-        double maxDistance = lightSource.getDistance(point);
-//        intersections.removeIf((geo)->{
-//            boolean invalid = geo.point.distance(point) > maxDistance;
-//            return invalid;
-//        });
+//        return false;
 
-        for (var geo : intersections) {
-            double distance = geo.point.distance(point);
-            if (distance >= maxDistance) {
-                intersections.remove(geo);
-            }
-//            if (alignZero(gp.point.distance(point) - maxDistance) <= 0)
-//                return false;
-        }
-        return (intersections.isEmpty());
+        for (var item : intersections)
+            if (item.geometry.getMaterial().kT.lowerThan(MIN_CALC_COLOR_K))
+                return false;
+        return true;
     }
+
+    private Double3 transparency(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
+        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
+        double maxDistance = lightSource.getDistance(gp.point);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, maxDistance);
+
+        if (intersections == null) {
+            return Double3.ONE;
+        }
+
+        Double3 transperancy = Double3.ONE;
+        for (var geo : intersections) {
+            transperancy = transperancy.product(geo.geometry.getMaterial().kT);
+            if (transperancy.lowerThan(MIN_CALC_COLOR_K))
+                return Double3.ZERO;
+        }
+        return transperancy;
+    }
+
+
+//    private Double3 transparency(GeoPoint gp, LightSource ls, Vector l, Vector n) {
+//        Vector lightDirection = l.scale(-1); // from point to light source
+//        Ray lightRay = new Ray(gp.point, lightDirection, n);
+//
+//        double lightDistance = ls.getDistance(gp.point);
+//        var intersections = scene.geometries.findGeoIntersections(lightRay, lightDistance);
+//        if (intersections == null)
+//            return Double3.ONE;
+//
+//        Double3 tr = Double3.ONE;
+//        for (var intersection : intersections) {
+//            tr = tr.product(intersection.geometry.getMaterial().kT);
+//            if (tr.lowerThan(MIN_CALC_COLOR_K))
+//                return Double3.ZERO;
+//        }
+//
+//        return tr;
+//    }
 
     private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
