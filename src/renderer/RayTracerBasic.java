@@ -86,15 +86,20 @@ public class RayTracerBasic extends RayTracerBase {
         return color;
     }
 
-    private Ray constructRefractedRay(Point point, Ray ray, Vector n) {
-        return new Ray(point, ray.getDir());
+    private Ray constructRefractedRay(Point point, Vector v, Vector n) {
+//        return new Ray(point, ray.getDir());
+        return new Ray(point, v, n);
     }
 
-    private Ray constructReflectedRay(Point point, Ray ray, Vector n) {
-        Vector v = ray.getDir();
-        Vector vn = n.scale(-2 *  v.dotProduct(n));
-        Vector r = v.add(vn);
-        return new Ray(point, r);
+
+    private Ray constructReflectedRay(Point point, Vector v, Vector n) {
+        v = v.normalize();
+        double vn = v.dotProduct(n);
+        if (isZero(vn)) {
+            return null;
+        }
+        Vector r = v.add(n.scale(-2d * vn));
+        return new Ray(point, r, n);
     }
 
 
