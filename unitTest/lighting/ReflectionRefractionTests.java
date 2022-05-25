@@ -117,8 +117,17 @@ public class ReflectionRefractionTests {
 //		new Polygon(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150), new Point(-70, 70, -140))
 //				.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100)));
 		scene.geometries.add(
-				new Polygon(new Point(60,-70,0),new Point(160,-190,-40), new Point(0,30,-60),new Point(2,-5,10))
-						.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100))
+				new Polygon(new Point(-25,-50,-30),
+						new Point(-25,-50,30),
+						new Point(15,-50,30),
+						new Point(15,-50,-30)).
+						setEmission(new Color(0,75,100))
+						.setMaterial(new Material()
+								.setkD(new Double3(0.6)).setkS(new Double3(0.4))
+								.setShininess(50))
+
+//				new Polygon(new Point(0, 0, 30), new Point(30, 0, 0), new Point(0, 30, 0), new Point(-30, 30, 30))
+//						.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100))
 		);
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
