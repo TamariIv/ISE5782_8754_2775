@@ -120,13 +120,15 @@ public class ReflectionRefractionTests {
 				new Polygon(new Point(-25,-50,-30),
 						new Point(-25,-50,30),
 						new Point(15,-50,30),
-						new Point(15,-50,-30))
-						.setEmission(new Color(0,75,100))
+						new Point(15,-50,-30)).
+						setEmission(new Color(0,75,100))
 						.setMaterial(new Material()
 								.setkD(new Double3(0.6)).setkS(new Double3(0.4))
 								.setShininess(50))
-		);
 
+//				new Polygon(new Point(0, 0, 30), new Point(30, 0, 0), new Point(0, 30, 0), new Point(-30, 30, 30))
+//						.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100))
+		);
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
 				.setKl(4E-5).setKq(2E-7));
