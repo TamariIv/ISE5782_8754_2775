@@ -107,4 +107,102 @@ public class ReflectionRefractionTests {
 				.renderImage() //
 				.writeToImage();
 	}
+
+	@Test
+	public void finalPic() {
+		Camera camera = new Camera(new Point(0,0,1000), new Vector(0,0,-1), new Vector(0,1,0))
+				.setVPSize(200,200).setVPDistance(1000);
+		scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
+//		scene.geometries.add(
+//		new Polygon(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150), new Point(-70, 70, -140))
+//				.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100)));
+		scene.geometries.add(
+				new Polygon(new Point(60,-70,0),new Point(160,-190,-40), new Point(0,30,-60),new Point(2,-5,10))
+						.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100))
+		);
+
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
+				.setKl(4E-5).setKq(2E-7));
+
+		ImageWriter imageWriter = new ImageWriter("targil7pic", 600, 600);
+		camera.setImageWriter(imageWriter) //
+				.setRayTracerBase(new RayTracerBasic(scene)) //
+				.renderImage() //
+				.writeToImage();
+	}
+
+
+//	/*****************************************************************************************************************
+//	 *
+//	 */
+//	private Scene scene2 = new Scene("final image scene")
+//			.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), new Double3(0.15)));
+//
+//	private Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+//			.setVPSize(200, 200)
+//			.setVPDistance(1000);
+//
+//	private static Geometry sphere1 = new Sphere(new Point(0, 0, 0),50)
+//			.setEmission(new Color(java.awt.Color.BLACK))
+//			.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100).setkT(new Double3(0.1)).setkR(Double3.ONE));
+//	private static Geometry sphere2 = new Sphere(new Point(0, 0, 0),80)
+//			.setEmission(new Color(java.awt.Color.BLUE))
+//			.setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setkT(Double3.ONE).setkR(Double3.ZERO));
+//	private static Geometry sphere3 = new Sphere(new Point(-75, -75, 0), 40)
+//			.setEmission(new Color(java.awt.Color.YELLOW))
+//			.setMaterial(new Material().setkT(Double3.ZERO));
+//	private static Geometry sphere4 = new Sphere( new Point(-75, -40, 0),20)
+//			.setEmission(new Color(java.awt.Color.GREEN))
+//			.setMaterial(new Material().setkT(new Double3(0.5)));
+//	private static Geometry sphere5 = new Sphere( new Point(-80, 20, 0),10)
+//			.setEmission(new Color(java.awt.Color.YELLOW))
+//			.setMaterial(new Material().setkT(new Double3(0.5)));
+//	private static Geometry sphere6 = new Sphere( new Point(-100, 50, 0),25)
+//			.setEmission(new Color(java.awt.Color.WHITE))
+//			.setMaterial(new Material().setkT(Double3.ZERO));
+//	private static Geometry sphere7 = new Sphere( new Point(-30, 100, 0),40)
+//			.setEmission(new Color(java.awt.Color.CYAN))
+//			.setMaterial(new Material().setkT(Double3.ONE));
+//
+//	private static Geometry triangle1 = new Triangle(
+//			new Point(75, 150, -150), new Point(150, 75, -150), new Point(0, 0, 0))
+//			.setEmission(new Color(java.awt.Color.GREEN))
+//			.setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(50).setkT(Double3.ONE));
+//	private static Geometry triangle2 = new Triangle(
+//			new Point(200, 50, -150), new Point(200, 0, -150), new Point(0, 0, 0))
+//			.setEmission(new Color(java.awt.Color.GREEN))
+//			.setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(50).setkT(new Double3(0.8)));
+//	private static Geometry triangle3 = new Triangle(
+//			new Point(200, -20, -150), new Point(200, -200, -150), new Point(0, 0, 0))
+//			.setEmission(new Color(java.awt.Color.GREEN))
+//			.setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(50).setkT(new Double3(0.4)));
+//	private static Geometry triangle4 = new Triangle(
+//			new Point(180, -200, -150), new Point(50, -200, -150), new Point(0, 0, 0))
+//			.setEmission(new Color(java.awt.Color.GREEN))
+//			.setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(50).setkT(Double3.ZERO));
+//
+//
+//	/**
+//	 * run the test of the final image
+//	 */
+//	@Test
+//	public void TestFinalImage(){
+//		//adding geometries to the scene
+//		scene.geometries.add(sphere1, sphere2, sphere3, sphere4, sphere5, sphere6, sphere7,
+//				triangle1, triangle2, triangle3, triangle4);
+//		//adding lights to the scene
+//		scene.lights.add(new SpotLight(new Color(java.awt.Color.WHITE), new Point(0, 0, 0), new Vector(1, 1, 0)));
+//		scene.lights.add(new SpotLight(new Color(java.awt.Color.WHITE), new Point(0, 0, 0), new Vector(1, -1, 0)));
+//		scene.lights.add(new SpotLight(new Color(java.awt.Color.WHITE), new Point(0, 0, 0), new Vector(-1, 1, 0)));
+//		scene.lights.add(new SpotLight(new Color(java.awt.Color.WHITE), new Point(0, 0, 0), new Vector(-1, -1, 0)));
+//		//write the image of the scene
+//		ImageWriter imageWriter = new ImageWriter("Final Image", 500, 500);
+//		//rendering the scene
+//		Render render = new Render()
+//				.setImageWriter(imageWriter)
+//				.setCamera(camera)
+//				.setRayTracer(new BasicRayTracer(scene));
+//		render.renderImageSuperSampling();
+//		render.writeToImage();
+//	}
 }
