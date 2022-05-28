@@ -117,17 +117,54 @@ public class ReflectionRefractionTests {
 //		new Polygon(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150), new Point(-70, 70, -140))
 //				.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100)));
 		scene.geometries.add(
-				new Polygon(new Point(-25,-50,-30),
-						new Point(-25,-50,30),
-						new Point(15,-50,30),
-						new Point(15,-50,-30)).
-						setEmission(new Color(0,75,100))
+				new Polygon(
+						new Point(-95,-80,-60),
+						new Point(-100,-100,60),
+						new Point(100,-100,60),
+						new Point(95,-80,-60))
+						.setEmission(new Color(0,150,200))
 						.setMaterial(new Material()
 								.setkD(new Double3(0.6)).setkS(new Double3(0.4))
-								.setShininess(50))
+								.setShininess(50)),
+				new Polygon(
+						new Point(-95,-80,-60),
+						new Point(-70,60,200),
+						new Point(70,60,200),
+						new Point(95,-80,-60))
+						.setEmission(new Color(0,255,255))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+				,new Polygon(
+						new Point(-95,120,-60),
+						new Point(-70,60,200),
+						new Point(70,60,200),
+						new Point(95,120,-60))
+						.setEmission(new Color(255,255,0))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
 
-//				new Polygon(new Point(0, 0, 30), new Point(30, 0, 0), new Point(0, 30, 0), new Point(-30, 30, 30))
-//						.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100))
+
+				,new Sphere(new Point(-95,-80,-60), 5)
+						.setEmission(new Color(0,255,0))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+				,new Sphere(new Point(-70,60,200), 5)
+						.setEmission(new Color(255,0,255))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+				,new Sphere(new Point(70,60,200), 5)
+						.setEmission(new Color(0,0,255))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+				,new Sphere(new Point(95,-80,-60), 5)
+						.setEmission(new Color(255,0,0))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+				,new Sphere(new Point(0,0,0), 5)
+						.setEmission(new Color(255,0,0))
+						.setMaterial(new Material()
+								.setKd(0.3).setKs(0.8).setShininess(80))
+
 		);
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
