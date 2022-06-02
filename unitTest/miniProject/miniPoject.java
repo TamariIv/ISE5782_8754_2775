@@ -20,9 +20,7 @@ public class miniPoject {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setVPSize(200, 200).setVPDistance(1000);
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
-//		scene.geometries.add(
-//		new Polygon(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150), new Point(-70, 70, -140))
-//				.setMaterial(new Material().setKd(0.7).setKs(0.15).setShininess(100)));
+
         scene.geometries.add(
                 new Polygon(
                         new Point(-95, -80, -60),
@@ -86,6 +84,30 @@ public class miniPoject {
     }
 
     @Test
+    public void finalPic2() {
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setVPSize(200, 200).setVPDistance(1000);
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
+
+        scene.geometries.add(
+                new Polygon(
+                        new Point(-95, -50, -60),
+                        new Point(-100, -100, 60),
+                        new Point(100, -100, 60),
+                        new Point(45, -50, -60))
+                        .setEmission(new Color(115,115,115))
+                        .setMaterial(new Material())
+
+        );
+
+        ImageWriter imageWriter = new ImageWriter("finalPic", 600, 600);
+        camera.setImageWriter(imageWriter) //
+                .setRayTracerBase(new RayTracerBasic(scene)) //
+                .renderImage() //
+                .writeToImage();
+    }
+
+    @Test
     public void tryStuff() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setVPSize(200, 200).setVPDistance(1000);
@@ -99,7 +121,7 @@ public class miniPoject {
                         .setEmission(new Color(255, 255, 0))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80))
-                ,new Sphere(new Point(0,-40,100),5)
+                , new Sphere(new Point(0, -40, 100), 5)
                         .setEmission(new Color(0, 255, 0))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5)))
@@ -162,11 +184,11 @@ public class miniPoject {
                         .setEmission(new Color(0, 0, 255))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
-                new Sphere(new Point(0,-50,160),20)
+                new Sphere(new Point(0, -50, 160), 20)
                         .setEmission(new Color(0, 0, 0))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
-                new Sphere(new Point(20,-40,120),15)
+                new Sphere(new Point(20, -40, 120), 15)
                         .setEmission(new Color(0, 0, 0))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5)))
@@ -175,7 +197,7 @@ public class miniPoject {
 
         scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
                 .setKl(4E-5).setKq(2E-7));
-        scene.lights.add(new SpotLight(new Color(255,250,220), new Point(0,60,180), new Vector(0,-1,0)));
+        scene.lights.add(new SpotLight(new Color(255, 250, 220), new Point(0, 60, 180), new Vector(0, -1, 0)));
 
         ImageWriter imageWriter = new ImageWriter("try2", 600, 600);
         camera.setImageWriter(imageWriter) //
