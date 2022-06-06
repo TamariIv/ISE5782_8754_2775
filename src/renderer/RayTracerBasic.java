@@ -6,6 +6,7 @@ import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.*;
@@ -46,6 +47,29 @@ public class RayTracerBasic extends RayTracerBase {
 
         //ray did not intersect any geometrical object - return the background color
         return scene.background;
+    }
+
+    /**
+     * @param rays List of surrounding rays
+     * @return average color
+     */
+    @Override
+    public Color traceRay(List<Ray> rays)
+    {
+        if(rays == null)
+            return scene.background;
+        Color color = Color.BLACK;
+        Color bkg = scene.background;
+        for (Ray ray : rays)
+        {
+//        	GeoPoint gp = findClosestIntersection(ray);
+//        	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+            color = color.add(traceRay(ray));
+        }
+        color = color.add(scene.ambientLight.getIntensity());
+        int size = rays.size();
+        return color.reduce(size);
+
     }
 
 
@@ -194,6 +218,14 @@ public class RayTracerBasic extends RayTracerBase {
         if (intersections != null)
             return ray.findClosestGeoPoint(intersections);
         return null;
+    }
+
+    public Color AverageColor(LinkedList<Ray> rays){
+        Color color=Color.BLACK;
+        for( Ray ray:rays){
+            color=color.add(traceRay(ray));
+        }
+        return color.reduce(Double.valueOf(rays.size()));
     }
 
 }

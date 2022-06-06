@@ -90,14 +90,17 @@ public class miniPoject {
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
 
         scene.geometries.add(
-                new Polygon(
-                        new Point(-95, -50, -60),
-                        new Point(-100, -100, 60),
-                        new Point(100, -100, 60),
-                        new Point(45, -50, -60))
-                        .setEmission(new Color(115,115,115))
-                        .setMaterial(new Material())
-
+//                new Polygon(
+//                        new Point(-120, -120, 500),
+//                        new Point(-80, -160, 550),
+//                        new Point(120, 60, 200),
+//                        new Point(160, 20, 250))
+////                        new Point(-95, -50, -60),
+////                        new Point(-100, -100, 60),
+////                        new Point(100, -100, 60),
+////                        new Point(45, -50, -60))
+//                        .setEmission(new Color(115,115,115))
+//                        .setMaterial(new Material()),
         );
 
         ImageWriter imageWriter = new ImageWriter("finalPic", 600, 600);

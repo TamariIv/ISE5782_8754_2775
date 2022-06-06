@@ -3,6 +3,8 @@ package renderer;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 /**
  * abstract class to trace a ray and calculate the color of the point the ray hits
  *
@@ -27,5 +29,7 @@ public abstract class RayTracerBase {
      * @return color of the point
      */
     public abstract primitives.Color traceRay(Ray ray);
+    public abstract primitives.Color traceRay(List<Ray> rays);
+
 
 }
