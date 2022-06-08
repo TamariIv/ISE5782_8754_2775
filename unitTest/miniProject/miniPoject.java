@@ -94,9 +94,9 @@ scene.geometries.add(
                                         new Point(-60, 60, 100),
                                         new Point(60, 60, 100),
                                         new Point(100, 100, 200),
-                                        new Point(-100, 100, 200))                                                               
+                                        new Point(-100, 100, 200))
                                         .setEmission(new Color(0,0,0))
-                                        .setMaterial(new Material()                                                              
+                                        .setMaterial(new Material()
                                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
 
                                 new Sphere(new Point(50, -70, 0), 22).
@@ -170,7 +170,7 @@ scene.geometries.add(
 //
 //
 
-                
+
 
 //
 //                        new Polygon(
@@ -280,6 +280,33 @@ scene.geometries.add(
                 .setKl(4E-5).setKq(2E-7));
 
         ImageWriter imageWriter = new ImageWriter("targil7pic", 600, 600);
+        camera.setImageWriter(imageWriter) //
+                .setRayTracerBase(new RayTracerBasic(scene)) //
+                .renderImage() //
+                .writeToImage();
+    }
+
+    @Test
+    public void finalPic2() {
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setVPSize(200, 200).setVPDistance(1000);
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
+
+        scene.geometries.add(
+//                new Polygon(
+//                        new Point(-120, -120, 500),
+//                        new Point(-80, -160, 550),
+//                        new Point(120, 60, 200),
+//                        new Point(160, 20, 250))
+////                        new Point(-95, -50, -60),
+////                        new Point(-100, -100, 60),
+////                        new Point(100, -100, 60),
+////                        new Point(45, -50, -60))
+//                        .setEmission(new Color(115,115,115))
+//                        .setMaterial(new Material()),
+        );
+
+        ImageWriter imageWriter = new ImageWriter("finalPic", 600, 600);
         camera.setImageWriter(imageWriter) //
                 .setRayTracerBase(new RayTracerBasic(scene)) //
                 .renderImage() //

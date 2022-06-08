@@ -3,9 +3,12 @@ package renderer;
 import primitives.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
+
 
 /**
  * camera producing ray through a view plane
@@ -23,6 +26,7 @@ public class Camera {
     private double _height;         // view plane height
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
+    private int numOfRays;
 
     public Vector getvTo() {
         return _vTo;
@@ -109,6 +113,20 @@ public class Camera {
     }
 
     /**
+     * setter for number of rays
+     * @param numOfRays
+     * @return this class-a builder pattern
+     */
+    public Camera setNumOfRays(int numOfRays)
+    {
+        if(numOfRays <= 0)
+            this.numOfRays=1;
+        else
+            this.numOfRays = numOfRays;
+        return this;
+    }
+
+    /**
      * Constructing a ray through a pixel
      *
      * @param Nx
@@ -141,7 +159,7 @@ public class Camera {
         return new Ray(_p0, Pij.subtract(_p0));
     }
 
-    public Camera renderImage() {
+    public Camera renderImage() throws MissingResourceException, IllegalArgumentException {
         try {
             if (imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
@@ -149,19 +167,111 @@ public class Camera {
             if (rayTracer == null) {
                 throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
             }
+            if (_p0 == null){
+                throw new MissingResourceException("missing resource", Point.class.getName(), "");
+            }
+            if (_vUp == null || _vRight == null || _vTo == null){
+                throw new MissingResourceException("missing resource", Vector.class.getName(), "");
+            }
 
             //rendering the image
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
-                    imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
+                    if(numOfRays == 1 || numOfRays == 0)
+                    {
+                        primitives.Color rayColor = castRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
+                        imageWriter.writePixel(j, i, rayColor);
+                    }
+                    else
+                    {
+                        List<Ray> rays = constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
+                        primitives.Color rayColor = rayTracer.traceRay(rays);
+                        imageWriter.writePixel(j, i, rayColor);
+                    }
+//                    imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
                 }
             }
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
         return this;
+    }
+
+    /**
+     *
+     * @param nX the amount of horizontal pixels
+     * @param nY the amount of vertical pixels
+     * @param j the row of a pixel
+     * @param i the column of a pixel
+     * @param raysAmount
+     * @return list of rays
+     */
+    public List<Ray> constructBeamThroughPixel (int nX, int nY, int j, int i, int raysAmount)
+    {
+        int numOfRays = (int)Math.floor(Math.sqrt(raysAmount)); //num of rays in each row or column
+        if (numOfRays==1)
+            return List.of(constructRay(nX, nY, j, i));
+        //Ratio (pixel width & height)
+        double Ry= _height/nY;
+        double Rx=_width/nX;
+        double Yi=(i-(nY-1)/2d)*Ry;
+        double Xj=(j-(nX-1)/2d)*Rx;
+        double PRy = Ry / numOfRays; //height distance between each ray
+        double PRx = Rx / numOfRays; //width distance between each ray
+        //The distance between the view plane and the camera cannot be 0
+        if (isZero(_distance))
+        {
+            throw new IllegalArgumentException("distance cannot be 0");
+        }
+
+        List<Ray> sampleRays = new ArrayList<>();
+
+        //for each pixel in the pixels grid
+        for (int i1 = 0; i1 < numOfRays; ++i1)
+        {
+            for (int j1 = 0; j1< numOfRays; ++j1)
+            {
+                sampleRays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, i1, j1));//add the ray
+            }
+        }
+        sampleRays.add(constructRay(nX, nY, j, i));//add the center  ray to pixel
+        return sampleRays;
+    }
+
+    /**
+     * the function treats each pixel like a little screen of its own and divide it to smaller "pixels".
+     * Through each one we construct a ray. This function is similar to ConstructRayThroughPixel.
+     * @param Ry height of each grid block we divided the pixel into
+     * @param Rx width of each grid block we divided the pixel into
+     * @param yi distance of original pixel from (0,0) on Y axis
+     * @param xj distance of original pixel from (0,0) on X axis
+     * @param j j coordinate of small "pixel"
+     * @param i i coordinate of small "pixel"
+     * @return beam of rays through pixel
+     */
+    private Ray constructRaysThroughPixel(double Ry,double Rx, double yi, double xj, int j, int i)
+    {
+        Point Pc = _p0.add(_vTo.scale(_distance)); //the center of the screen point
+
+        double ySampleI =  (i *Ry + Ry/2d); //The pixel starting point on the y axis
+        double xSampleJ=   (j *Rx + Rx/2d); //The pixel starting point on the x axis
+
+        Point Pij = Pc; //The point at the pixel through which a beam is fired
+        //Moving the point through which a beam is fired on the x axis
+        if (!isZero(xSampleJ + xj))
+        {
+            Pij = Pij.add(_vRight.scale(xSampleJ + xj));
+        }
+        //Moving the point through which a beam is fired on the y axis
+        if (!isZero(ySampleI + yi))
+        {
+            Pij = Pij.add(_vUp.scale(-ySampleI -yi ));
+        }
+        Vector Vij = Pij.subtract(_p0);
+
+        return new Ray(_p0,Vij);//create the ray throw the point we calculate here
     }
 
     private primitives.Color castRay(int nX, int nY, int j, int i) {

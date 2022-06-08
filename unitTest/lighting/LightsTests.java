@@ -23,7 +23,8 @@ public class LightsTests {
 			.setVPDistance(1000);
 	private Camera camera2 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 			.setVPSize(200, 200) //
-			.setVPDistance(1000);
+			.setVPDistance(1000)
+			.setNumOfRays(144);
 
 	private Point[] p = { // The Triangles' vertices:
 			new Point(-110, -110, -150), // the shared left-bottom
@@ -52,7 +53,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereDirectional", 500, 500);
 		camera1.setImageWriter(imageWriter) //
-				.setRayTracerBase(new RayTracerBasic(scene1)) //
+				.setRayTracerBase(new RayTracerBasic(scene1)).setNumOfRays(81) //
 				.renderImage() //
 				.writeToImage(); //
 	}
