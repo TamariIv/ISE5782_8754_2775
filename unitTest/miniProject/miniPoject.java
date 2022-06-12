@@ -37,7 +37,7 @@ public class miniPoject {
                         new Point(60, 60, 100),
                         new Point(60, -60, 100),
                         new Point(-60, -60, 100))
-                        .setEmission(new Color(170,250,255))
+                        .setEmission(new Color(155,210,230))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
                 new Polygon( // left wall
