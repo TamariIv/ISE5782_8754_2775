@@ -34,6 +34,10 @@ public abstract class Geometry extends Intersectable {
         return this;
     }
 
+    /**
+     * set material and return the object itself
+     * @param material
+     */
     public Geometry setMaterial(Material material) {
         this.material = material;
         return this;

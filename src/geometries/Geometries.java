@@ -9,6 +9,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * interface of composite- contains a list of geometries that are intersectable.
+ * @author Tamari Ivgi and Hodaya Ashkenazi
+ * the idea of this class is to use the design pattern of
+ * composite by taking a sum of shapes and calculating in one function
+ * the intersections between them without the need to split the actions
+ */
+
 public class Geometries extends Intersectable {
 
     List<Intersectable> _intersectablesList;
@@ -17,11 +25,19 @@ public class Geometries extends Intersectable {
         _intersectablesList = new LinkedList<>();
     }
 
+    /**
+     * copy-ctor. copies the given array of geometries.
+     * @param intersectables
+     */
     public Geometries(Intersectable... intersectables) {
         _intersectablesList = new LinkedList<>();
         Collections.addAll(_intersectablesList, intersectables);
     }
 
+    /**
+     * Adds new geometries to the list
+     * @param intersectables
+     */
     public void add(Intersectable... intersectables) {
         Collections.addAll(_intersectablesList, intersectables);
     }

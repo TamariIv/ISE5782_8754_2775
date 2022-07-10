@@ -124,6 +124,11 @@ public class Plane extends Geometry {
 //        return List.of(point);
 //    }
 
+    /**
+     * @param ray to find intersections points with the plane
+     * @param maxDistance
+     * @return list of the intersections points with the plane
+     */
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         //t=n*(q0-Po)/n*v
         Vector v= ray.getDir();

@@ -253,7 +253,7 @@ scene.geometries.add(
                                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
                                 new Sphere(new Point(55, -70, -5), 5)
                                         .setEmission(new Color(105,105,105))
-                                        .setMaterial(new Material().setkR(new Double3(0.9))),
+                                        .setMaterial(new Material().setkR(new Double3(0.9)).setkG(0.9)),
                new Sphere(new Point(20, -70, 60), 15)
                      .setEmission(new Color(200,105,80))
 //                     .setMaterial(new Material()
@@ -364,7 +364,7 @@ scene.geometries.add(
                 new Sphere(new Point(0, -50, 160), 20)
                         .setEmission(new Color(0, 0, 0))
                         .setMaterial(new Material()
-                                .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
+                                .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5)).setkG(0.5)),
                 new Sphere(new Point(20, -40, 120), 15)
                         .setEmission(new Color(0, 0, 0))
                         .setMaterial(new Material()
