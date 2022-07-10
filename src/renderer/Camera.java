@@ -74,6 +74,11 @@ public class Camera {
 
     // chaining methods
 
+    public Camera setP0(Point p0) {
+        _p0 = p0;
+        return this;
+    }
+
     /**
      * set distance between the camera and its view plane
      *
