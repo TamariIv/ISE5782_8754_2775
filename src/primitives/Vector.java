@@ -98,4 +98,56 @@ public class Vector extends Point{
     public Vector scale(double d) {
         return new Vector(this._xyz.scale(d));
     }
+
+
+    // CAMERA ROTATION HELP FUNCTIONS
+    /**
+     * Rotates the vector around the x axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateX(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = _xyz.d1;
+        double y = _xyz.d2 * Math.cos(radianAlpha) - _xyz.d3 * Math.sin(radianAlpha);
+        double z = _xyz.d2 * Math.sin(radianAlpha) + _xyz.d3 * Math.cos(radianAlpha);
+
+        _xyz = new Double3(x, y, z);
+        return this;
+    }
+
+
+    /**
+     * Rotates the vector around the y axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateY(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = _xyz.d1 * Math.cos(radianAlpha) + _xyz.d3 * Math.sin(radianAlpha);
+        double y = _xyz.d2;
+        double z = -_xyz.d1 * Math.sin(radianAlpha) + _xyz.d3 * Math.cos(radianAlpha);
+
+        _xyz = new Double3(x, y, z);
+        return this;
+    }
+
+
+    /**
+     * Rotates the vector around the z axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateZ(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = _xyz.d1 * Math.cos(radianAlpha) - _xyz.d2 * Math.sin(radianAlpha);
+        double y = _xyz.d1 * Math.sin(radianAlpha) + _xyz.d2 * Math.cos(radianAlpha);
+        double z = _xyz.d3;
+
+        _xyz = new Double3(x, y, z);
+        return this;
+    }
 }

@@ -2,7 +2,6 @@ package renderer;
 
 import primitives.*;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -298,5 +297,34 @@ public class Camera {
         if (imageWriter == null)
             throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
         imageWriter.writeToImage();
+    }
+
+    // CAMERA ROTATION BONUS
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     *
+     * @param v vector of angles
+     * @return the current camera
+     */
+    public Camera rotate(Vector v) {
+        return rotate(v.getX(), v.getY(), v.getZ());
+    }
+
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     *
+     * @param x angles to rotate around the x axis
+     * @param y angles to rotate around the y axis
+     * @param z angles to rotate around the z axis
+     * @return the current camera
+     */
+    public Camera rotate(double x, double y, double z) {
+        _vTo.rotateX(x).rotateY(y).rotateZ(z);
+        _vUp.rotateX(x).rotateY(y).rotateZ(z);
+        _vRight = _vTo.crossProduct(_vUp);
+
+        return this;
     }
 }

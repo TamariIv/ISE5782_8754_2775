@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Point {
 
     public static final Point ZERO =  new Point(0,0,0);
-    final Double3 _xyz;
+//    final Double3 _xyz;
+    Double3 _xyz;
 
     /**
      * primary constructor for point
