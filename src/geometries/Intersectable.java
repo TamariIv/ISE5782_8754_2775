@@ -35,6 +35,9 @@ public abstract class Intersectable {
             this.point = point;
         }
 
+        /**
+         * an admin function that checks if the objects are equal
+         */
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -54,6 +57,11 @@ public abstract class Intersectable {
     }
 
 
+    /**
+     * @param ray
+     * @return list of GeoPints: intersections and the geometries that are
+     * intersected.
+     */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
     }
@@ -65,7 +73,7 @@ public abstract class Intersectable {
     /**
      *
      * @param ray ray intersecting the geometry
-     * @param maxDistance maxximum distance to loook for intersections geometries
+     * @param maxDistance maximum distance to look for intersections geometries
      * @return list of intersection points
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);

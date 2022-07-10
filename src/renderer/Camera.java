@@ -54,7 +54,7 @@ public class Camera {
     private RayTracerBase rayTracer;
     private int numOfRays;
 
-    private int NumOfRaysSupersampling=0;
+    private int NumOfRaysSupersampling = 40;
     private boolean isSupersampling=false;
     public Camera setSupersampling(boolean isSupersampling) {
         this.isSupersampling = isSupersampling;

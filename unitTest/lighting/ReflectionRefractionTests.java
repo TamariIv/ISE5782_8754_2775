@@ -14,6 +14,8 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
+import java.util.List;
+
 /**
  * Tests for reflection and transparency functionality, test for partial shadows
  * (with transparency)
@@ -251,4 +253,85 @@ public class ReflectionRefractionTests {
 //		render.renderImageSuperSampling();
 //		render.writeToImage();
 //	}
+
+
+
+
+//	/**
+//	 * glussy test
+//	 */
+//	@Test
+//	public void GlassCube() {
+//
+//		Scene scene = new Scene("Cube scene");
+//		Camera camera = (new Camera(new Point(0, 0, -2000), new Vector(0, 0, 1), new Vector(0, 1, 0)))
+//				.setVPDistance(1000).setVPSize(150, 150);
+//
+//		scene.setBackground(new Color(25, 25, 112));
+//		scene.setAmbientLight(new AmbientLight(Color.BLACK, new Double3(0)));
+//
+//		scene.geometries.add(new Polygon( // AEFD
+//						new Point(0, 0, 0), new Point(0, 70, 0), new Point(-50, 70, 50), new Point(-50, 0, 50))
+//						.setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6)).setkR(new Double3(0))),
+//				new Polygon( // TOP
+//						new Point(0, 70, 0), new Point(-50, 70, 50), new Point(0, 70, 100),
+//						new Point(50, 70, 50)).setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6)).setkR(new Double3(0))),
+//				new Polygon( // DFHB
+//						new Point(-50, 0, 50), new Point(-50, 70, 50), new Point(0, 70, 100),
+//						new Point(0, 0, 100)).setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6)).setkR(new Double3(0))),
+//				new Polygon( // BHGC
+//						new Point(0, 0, 100), new Point(0, 70, 100), new Point(50, 70, 50),
+//						new Point(50, 0, 50)).setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6)).setkR(new Double3(0))),
+//				new Polygon( // CGEA
+//						new Point(50, 0, 50), new Point(50, 70, 50), new Point(0, 70, 0), new Point(0, 0, 0))
+//						.setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6)).setkR(new Double3(0))),
+//				new Polygon( // BOTTOM
+//						new Point(0, 0, 0), new Point(-50, 0, 50), new Point(0, 0, 100), new Point(50, 0, 50))
+//						.setEmission(new Color(105, 105, 105))
+//						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(new Double3(0.6) ).setkR(new Double3(0)))
+//
+//				, new Sphere(new Point(0, 35, 50), 25).setEmission(new Color(java.awt.Color.red))
+//						.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))
+//
+//				,
+//				new Plane(new Point(0, -5, 0), new Vector(0, 1, 0)).setEmission(new Color(java.awt.Color.DARK_GRAY))
+//						.setMaterial(new Material().setKd(0.2).setKs(0).setShininess(50).setkT(new Double3(0)).setkR(new Double3(0.8))
+//								.setRadiusForGlossy(0.08))
+//
+//				,
+//				new Sphere(new Point(-100, 35, 0), 30).setEmission(new Color(255, 210, 0))
+//						.setMaterial(new Material().setKd(0.3).setKs(0).setShininess(900).setkT(new Double3(0)).setkR(new Double3(0))
+//								.setRadiusForGlossy(0.08)),
+//				new Sphere(new Point(100, 35, 0), 30).setEmission(new Color(255, 210, 0)).setMaterial(
+//						new Material().setKd(0.3).setKs(0).setShininess(900).setkT(new Double3(0)).setkR(new Double3(0)).setRadiusForGlossy(0.08))
+//
+//		);
+//
+//		scene.lights.addAll(List.of(
+//				new SpotLight(new Color(1000, 600, 1000), new Point(-100, 100, 100), new Vector(1, -0.4, -1)).setKc(1)
+//						.setKl(0.0001).setKq(0.00005),
+//				new DirectionalLight(new Color(255, 215, 0), new Vector(-1, -0.4, 1))));
+//		int p = 500;
+//		ImageWriter imageWriter = new ImageWriter("GlassCube", p, p);
+//		 = new Camera().setImageWriter(imageWriter).setCam(camera)
+//				.setRayTracerBase(new RayTracerBasic(scene).setDistanceForBlurryGlossy(80).setNumOfRaysGlossy(100))
+//				.setMultithreading(3).setDebugPrint();
+//
+//		render.renderImage();
+//		render.writeToImage();
+//		// whitin glussy
+//		ImageWriter imageWriter1 = new ImageWriter("GlassCube whitin glossy", p, p);
+//		Render render1 = new Render().setImageWriter(imageWriter1).setCam(camera)
+//				.setRayTracerBase(new RayTracerBasic(scene)).setMultithreading(3).setDebugPrint();
+//
+//		render1.renderImage();
+//		render1.writeToImage();
+//	}
+//
+
 }
