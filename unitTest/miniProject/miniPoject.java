@@ -151,7 +151,7 @@ public class miniPoject {
                         new Point(60, 60, 100),
                         new Point(60, -60, 100),
                         new Point(-60, -60, 100))
-                        .setEmission(new Color(155,210,230))
+                        .setEmission(new Color(192,192,192))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
                 new Polygon( // left wall
@@ -159,7 +159,7 @@ public class miniPoject {
                         new Point(-100, 100, 200),
                         new Point(-100, -100, 200),
                         new Point(-60, -60, 100))
-                        .setEmission(new Color(170,250,255))
+                        .setEmission(new Color(244,164,96))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
                 new Polygon( // right wall
@@ -167,7 +167,7 @@ public class miniPoject {
                         new Point(60, 60, 100),
                         new Point(60, -60, 100),
                         new Point(100, -100, 200))
-                        .setEmission(new Color(170,250,255))
+                        .setEmission(new Color(244,164,96))
                         .setMaterial(new Material()
                                 .setKd(0.3).setKs(0.8).setShininess(80).setkT(new Double3(0.5))),
                 new Polygon( // ceiling
@@ -220,7 +220,8 @@ public class miniPoject {
 //                        new Point(-20, -10, 100))
 //                        .setEmission(new Color(230, 190, 105)),
 
-
+//               new Cylinder(new Ray(3))
+                
                 // DESK
 
                 new Polygon( // top
@@ -266,7 +267,7 @@ public class miniPoject {
 
 //                new Polygon(
 //                        new Point(40, -45, 120),
-//                        new Point(36, -45, 120),
+//                        new Point(6 -45, 120),
 //                        new Point(36,-70, 120),
 //                        new Point(40,-70, 120))
 //                        .setEmission(new Color(230, 190, 105)),
@@ -282,7 +283,6 @@ public class miniPoject {
                 );
 
 //        scene.lights.add(
-//                new SpotLight(new Color(400, 400, 400), new Point(-10, -10, 100), new Vector(0, -2, -2)).setKl(0.01).setKq(0.001),
 //                new SpotLight(new Color(255,255,255), new Point(0, 80, 150), new Vector(0,-1,0)).setKl(0.05).setKq(0.01));
 //        scene.lights.add(new SpotLight(new Color(400,400,400), new Point(30,-40,170),new Vector(0,0,-1)).setKl(0.01).setKq(0.001));
 
