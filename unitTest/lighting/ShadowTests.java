@@ -25,7 +25,7 @@ public class ShadowTests {
 	private Scene scene = new Scene("Test scene");
 	private Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 			.setVPSize(200, 200).setVPDistance(1000) //
-			.setRayTracerBase(new RayTracerBasic(scene));
+			.setRayTracerBase(new RayTracerBasic(scene)).setNumOfRays(81);
 
 	/**
 	 * Helper function for the tests in this module
@@ -36,7 +36,7 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), spotLocation, new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 		camera.setImageWriter(new ImageWriter(pictName, 400, 400)) //
-				.renderImage() //
+				.renderImage().setNumOfRays(81) //
 				.writeToImage();
 	}
 

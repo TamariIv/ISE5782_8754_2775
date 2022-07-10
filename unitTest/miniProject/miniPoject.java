@@ -20,7 +20,7 @@ public class miniPoject {
     @Test
     public void finalPic5() {
         Camera camera = new Camera(new Point(0, 70,900), new Vector(0, -0.05, -1), new Vector(0, 1, -0.05))
-                .setVPSize(200, 200).setVPDistance(1000);
+                .setVPSize(200, 200).setVPDistance(1000).setNumOfRays(144);
 //        Camera camera = new Camera(new Point(0, 50, 1000), new Vector(0, -100, -1000), new Vector(0, 900, -90))
 //                .setVPSize(200, 200).setVPDistance(1000);
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
@@ -50,8 +50,6 @@ public class miniPoject {
                         new Point(20,20,240))
                         .setEmission(new Color(255, 150, 105))
                         .setMaterial(new Material().setKd(0.1)),
-
-//                        .setMaterial(new Material().setShininess(10).setkR(new Double3(0.4))),
                 new Polygon(
                         new Point(50,0,250),
                         new Point(40,0,230),
@@ -59,9 +57,6 @@ public class miniPoject {
                         new Point(50,20,250))
                         .setEmission(new Color(255, 150, 105))
                         .setMaterial(new Material().setKd(0.1)),
-
-
-//                        .setMaterial(new Material().setShininess(10).setkR(new Double3(0.4))),
                 new Polygon(
                         new Point(50,0,250),
                         new Point(30,0,260),
@@ -69,8 +64,6 @@ public class miniPoject {
                         new Point(50,20,250))
                         .setEmission(new Color(255, 150, 105))
                         .setMaterial(new Material().setKd(0.1).setKs(0.3)),
-
-//                        .setMaterial(new Material().setShininess(10).setkR(new Double3(0.4))),
                 new Polygon(
                         new Point(30,20,260),
                         new Point(20,20,240),
@@ -78,8 +71,6 @@ public class miniPoject {
                         new Point(50,20,250))
                         .setEmission(new Color(255, 150, 105))
                         .setMaterial(new Material().setKd(0.1)),
-
-//                        .setMaterial(new Material().setShininess(10).setkR(new Double3(0.4))),
 
                 // SPHERES
                 new Sphere(new Point(-25,15,230),15)
@@ -92,57 +83,31 @@ public class miniPoject {
                         .setEmission(new Color(255, 0, 85))
                         .setMaterial(new Material().setShininess(4).setkT(new Double3(0.7)).setkR(new Double3(0.5))),
 
-//                // PYRAMID
-//                new Polygon(
-//                        new Point(-10,0.1,250),
-//                        new Point(-30,0.1,260),
-//                        new Point(-10,0.1,270))
-//                        .setEmission(new Color(255, 15, 0))
-//                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
-//                new Polygon(
-//                        new Point(-15,15,260),
-//                        new Point(-10,0.1,250),
-//                        new Point(-30,0.1,260))
-//                        .setEmission(new Color(255, 15, 0))
-//                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
-//                new Polygon(
-//                        new Point(-15,15,260),
-//                        new Point(-30,0.1,260),
-//                        new Point(-10,0.1,270))
-//                        .setEmission(new Color(255, 15, 0))
-//                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
-//                new Polygon(
-//                        new Point(-15,15,260),
-//                        new Point(-10,0.1,250),
-//                        new Point(-10,0.1,270))
-//                        .setEmission(new Color(255, 15, 0))
-//                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
-
                 // PYRAMID
                 new Polygon(
                         new Point(30,0.1,250),
                         new Point(10,0.1,260),
                         new Point(30,0.1,270))
                         .setEmission(new Color(255, 15, 0))
-                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
+                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1)).setkG(1.5)),
                 new Polygon(
                         new Point(25,15,260),
                         new Point(30,0.1,250),
                         new Point(10,0.1,260))
                         .setEmission(new Color(255, 15, 0))
-                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
+                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1)).setkG(1.5)),
                 new Polygon(
                         new Point(25,15,260),
                         new Point(10,0.1,260),
                         new Point(30,0.1,270))
                         .setEmission(new Color(255, 15, 0))
-                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
+                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1)).setkG(1.5)),
                 new Polygon(
                         new Point(25,15,260),
                         new Point(30,0.1,250),
                         new Point(30,0.1,270))
                         .setEmission(new Color(255, 15, 0))
-                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1))),
+                        .setMaterial(new Material().setKs(0.3).setkT(new Double3(0.1)).setkG(1.5)),
 
                 // GLOSSY SURFACE
                 new Polygon(
@@ -151,10 +116,8 @@ public class miniPoject {
                         new Point(0,30,230),
                         new Point(20,30,230))
                         .setEmission(new Color(20, 20, 20))
-                        .setMaterial(new Material().setkR(new Double3(0.8)).setkT(new Double3(0.2))),
+                        .setMaterial(new Material().setkR(new Double3(0.8)).setkT(new Double3(0.2)).setkG(0.7))
 
-                new Cylinder(new Ray(new Point(10,1,250),new Vector(0,1,0)),5,15)
-                        .setEmission(new Color(255, 150, 105))
 
 
 
@@ -169,36 +132,36 @@ public class miniPoject {
         scene.lights.add(new SpotLight(new Color(255, 250, 220), new Point(0, 60, 250), new Vector(0, -1, 0)));
 
 
-        int frames = 16;
-        double angle = 360d / frames;
-        double angleRadians = 2 * Math.PI / frames;
+//        int frames = 16;
+//        double angle = 360d / frames;
+//        double angleRadians = 2 * Math.PI / frames;
+//
+//        double radius = camera.getP0().subtract(Point.ZERO).length();
+//
+//        for (int i = 0; i < frames; i++) {
+//            System.out.println("Start frame " + (i + 1));
+//
+//            camera.rotate(0, angle, 0);
+//            camera.setP0(
+//                    new Point(
+//                            Math.sin(angleRadians * (i + 1)) * radius,
+//                            0,
+//                            Math.cos(angleRadians * (i + 1)) * radius)
+//            );
+//
+//            ImageWriter imageWriter = new ImageWriter("project/Project" + (i + 1), 600, 450);
+//            camera.setImageWriter(imageWriter)
+//                            .setRayTracerBase(new RayTracerBasic(scene))
+//                            .renderImage()
+//                            .writeToImage();
+//        }
 
-        double radius = camera.getP0().subtract(Point.ZERO).length();
 
-        for (int i = 0; i < frames; i++) {
-            System.out.println("Start frame " + (i + 1));
-
-            camera.rotate(0, angle, 0);
-            camera.setP0(
-                    new Point(
-                            Math.sin(angleRadians * (i + 1)) * radius,
-                            0,
-                            Math.cos(angleRadians * (i + 1)) * radius)
-            );
-
-            ImageWriter imageWriter = new ImageWriter("project/Project" + (i + 1), 600, 450);
-            camera.setImageWriter(imageWriter)
-                            .setRayTracerBase(new RayTracerBasic(scene))
-                            .renderImage()
-                            .writeToImage();
-        }
-
-
-//        ImageWriter imageWriter = new ImageWriter("try4", 600, 600);
-//        camera.setImageWriter(imageWriter) //
-//                .setRayTracerBase(new RayTracerBasic(scene)) //
-//                .renderImage() //
-//                .writeToImage();
+        ImageWriter imageWriter = new ImageWriter("try4", 600, 600);
+        camera.setImageWriter(imageWriter) //
+                .setRayTracerBase(new RayTracerBasic(scene)).setNumOfRays(144) //
+                .renderImage() //
+                .writeToImage();
     }
 
     // blue room // minip
@@ -525,21 +488,21 @@ public class miniPoject {
                 // ROOM
                 new Polygon(
                         new Point(0,0,200),
-                        new Point(-50,0,250),
-                        new Point(0,0,300),
-                        new Point(50,0,250))
+                        new Point(-40,0,240),
+                        new Point(0,0,280),
+                        new Point(40,0,240))
                         .setEmission(new Color(215,150,60)),
                 new Polygon(
                         new Point(0,60,200),
                         new Point(0,0,200),
-                        new Point(50,0,250),
-                        new Point(50,60,250))
+                        new Point(40,0,240),
+                        new Point(40,60,240))
                         .setEmission(new Color(255,245,200)),
                 new Polygon(
                         new Point(0,60,200),
                         new Point(0,0,200),
-                        new Point(-50,0,250),
-                        new Point(-50,60,250))
+                        new Point(-40,0,240),
+                        new Point(-40,60,240))
                         .setEmission(new Color(255,245,200)),
 
                 // DESK
@@ -574,15 +537,29 @@ public class miniPoject {
                         new Point(-10,20,230),
                         new Point(-10,18,230))
                         .setEmission(new Color(140,66,0)),
+
+                // WINDOW
                 new Polygon(
                         new Point(14,45,216),
                         new Point(29,45,231),
                         new Point(29,25,231),
                         new Point(14,25,216))
-                        .setEmission(new Color(170,240,255))
+                        .setEmission(new Color(170,240,255)),
 
                 // SHELF
+                new Polygon(
+                        new Point(-20,30,220),
+                        new Point(-7,30,207),
+                        new Point(-3,30,211),
+                        new Point(-16,30,224))
+                        .setEmission(new Color(140,66,0)),
 
+                new Polygon(
+                        new Point(-20,28,220),
+                        new Point(-7,28,207),
+                        new Point(-3,28,211),
+                        new Point(-16,28,224))
+                        .setEmission(new Color(140,66,0))
 
 
 

@@ -60,6 +60,7 @@ public class Cylinder extends Tube{
         return point.subtract(o).normalize();
     }
 
+
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         List<GeoPoint> res = new ArrayList<>();
